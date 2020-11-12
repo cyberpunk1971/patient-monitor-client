@@ -1,7 +1,8 @@
 import './App.css';
-import { Route, Link } from 'react-router-dom';
+import { Route, Link, Redirect } from 'react-router-dom';
 import Home from './components/Home';
 import Login from './components/Login';
+
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
     </header>
       <Route exact path='/' component={Home} />
         <Route path='/login' component={Login} />
+        <Redirect to='/' />
     </div>
   );
 }

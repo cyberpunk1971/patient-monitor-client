@@ -1,62 +1,91 @@
-import React from 'react';
+import React, { useState } from 'react';
+import axios from 'axios';
+import Input from './forms/Input';
 
-class Home extends React.Component {
-    render() {
-        return <>
-            <div class="class= col-6 side_div_left">
-                <h2>Patient Monitor</h2>
-                <h3>is an application for managing
-                patient data.</h3>
-                <button><a href="dashboard.html">DEMO</a></button>
-            </div>
+const Home = () => {
+    const [formData, setFormData] = useState({
+        username: '',
+        email: '',
+        password: ''
+    });
 
-            <div>
+    const { username, email, password } = formData;
 
-                <form class="col-6" id="register-form" action="/register" method="POST">
+    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
 
-                    <div>
-                        <div>
-                            <label for="username">Username</label>
-                        </div>
+    const onSubmit = async e => {
+        e.preventDefault();
+        
+            const newUser = {
+                username,
+                email,
+                password
+            }
 
-                        <div>
-                            <input type="text" id="username" name="username" placeholder="Username.." />
-                        </div>
-                    </div>
+            try {
+                const config = {
+                    header: {
+                        'Content-Type': 'application/json'
+                    }
+                }
+                const body = JSON.stringify(newUser);
+                const response = await axios.post('http://localhost:8080/api/users/register', body, config);
+                console.log(response.data);
 
-                    <div>
-                        <div>
-                            <label for="email">Email</label>
-                        </div>
-
-                        <div>
-                            <input type="email" id="email" name="email" placeholder="Your Email.." />
-                        </div>
-                    </div>
-
-                    <div>
-                        <div>
-                            <label for="password">Password</label>
-                        </div>
-
-                        <div>
-                            <input type="password" id="password" name="password" placeholder="Your password.." />
-                        </div>
-                    </div>
-
-
-                    <div class="submit__button">
-                        <button type="submit" id="submit-btn">Submit</button>
-                    </div>
-
-                </form>
-
-                <div class="login__div">
-                    <h3>Have an account? <a href="login.html" class="login__btn">Login</a></h3>
-                </div>
-            </div>
-        </>
+            } catch (err) {
+                console.error(err.response.data);
+            }
+        
     }
+
+    return <>
+        <div className="class= col-6 side_div_left">
+            <h2>Patient Monitor</h2>
+            <h3>is an application for managing
+                patient data.</h3>
+            <button><a href="dashboard.html">DEMO</a></button>
+        </div>
+
+        <div className="register-div">
+            <form className="register-form" onSubmit={e => onSubmit(e)}>
+                <input
+                    element="input"
+                    type="text"
+                    placeholder="Username"
+                    label="Username"
+                    name="username"
+                    value={username}
+                    onChange={e => onChange(e)}
+                    required />
+
+                <input
+                    element="input"
+                    type="email"
+                    placeholder="Email"
+                    label="Email"
+                    name="email"
+                    value={email}
+                    onChange={e => onChange(e)}
+                    required />
+
+                <input
+                    element="input"
+                    type="password"
+                    placeholder="Password"
+                    label="Password"
+                    name="password"
+                    value={password}
+                    onChange={e => onChange(e)}
+                    required />
+
+                
+
+                <input type="submit" value="Register" />
+            </form>
+
+
+        </div>
+    </>
 }
 
 export default Home;
