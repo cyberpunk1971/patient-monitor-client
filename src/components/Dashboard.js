@@ -1,16 +1,14 @@
 import React, { Fragment } from 'react';
 import { Route, Link, Redirect } from 'react-router-dom';
-import Patients from './components/Patients';
+import PatientList from './PatientList';
+import './Dashboard.css';
 
-class Dashboard extends React.Component {
-    render() {
 
-        return <>
+const Dashboard = (props) => {
+    const PATIENTS = [{id: 'p1', name: 'Alex Thomas', age: '49'}];
 
-            <h1>Dashboard</h1>
-            <Route path='/patients' component={Patients}></Route>
-        </>
+    return <PatientList patients={PATIENTS} />
+    
+};
 
-    }
-}
 export default Dashboard;

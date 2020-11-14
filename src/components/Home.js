@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import axios from 'axios';
-import Input from './forms/Input';
+import Input from './UI/Input';
 
 const Home = () => {
     const [formData, setFormData] = useState({
@@ -24,7 +24,7 @@ const Home = () => {
 
             try {
                 const config = {
-                    header: {
+                    headers: {
                         'Content-Type': 'application/json'
                     }
                 }
@@ -35,8 +35,7 @@ const Home = () => {
             } catch (err) {
                 console.error(err.response.data);
             }
-        
-    }
+         }
 
     return <>
         <div className="class= col-6 side_div_left">
