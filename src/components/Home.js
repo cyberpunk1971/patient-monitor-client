@@ -42,7 +42,7 @@ const Home = () => {
             <h2>Patient Monitor</h2>
             <h3>is an application for efficient management of
                 patient data.</h3>
-            <button><a href="dashboard.html">DEMO</a></button>
+            <button>DEMO</button>
         </div>
 
         <div className="register-div">

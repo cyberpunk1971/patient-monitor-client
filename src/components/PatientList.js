@@ -1,4 +1,5 @@
 import React from 'react';
+
 import Patient from './Patient';
 import './PatientList.css';
 
@@ -10,14 +11,23 @@ const PatientList = (props) => {
             </div>
         );
     }
-    return <ul>
+    //Should the key be the patient ID or the user ID?
+    //Refer to {Link} in Patient.js
+    return <ul className="patient-list">
         {props.patients.map((patient) => {
             return (
                 <Patient
                     key={patient.id}
                     id={patient.id}
+                    name={patient.name}
                     age={patient.age}
-                    name={patient.name} />
+                    gender={patient.gender}
+                    race={patient.race}
+                    address={patient.address}
+                    city={patient.city}
+                    state={patient.state}
+                    zip={patient.zip}
+                    phone={patient.phone} />
             );
         })}
     </ul>
