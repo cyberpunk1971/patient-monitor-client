@@ -40,7 +40,7 @@ const Home = () => {
     return <>
         <div className="class= col-6 side_div_left">
             <h2>Patient Monitor</h2>
-            <h3>is an application for managing
+            <h3>is an application for efficient management of
                 patient data.</h3>
             <button><a href="dashboard.html">DEMO</a></button>
         </div>
