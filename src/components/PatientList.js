@@ -27,7 +27,9 @@ const PatientList = (props) => {
                     city={patient.city}
                     state={patient.state}
                     zip={patient.zip}
-                    phone={patient.phone} />
+                    phone={patient.phone}
+                    creatorId={patient.creator}
+                     />
             );
         })}
     </ul>

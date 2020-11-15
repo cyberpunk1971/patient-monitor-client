@@ -42,6 +42,9 @@ const Home = () => {
             <h2>Patient Monitor</h2>
             <h3>is an application for efficient management of
                 patient data.</h3>
+                <p>Issues: Address routes for users/patients in App.js and Dashboard.js.</p>
+                   <p>Address PatientList.js and Patient.js ID key/value.</p> 
+                
             <button>DEMO</button>
         </div>
 
