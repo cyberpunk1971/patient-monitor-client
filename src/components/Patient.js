@@ -1,6 +1,8 @@
 import React from 'react';
-import './Patient.css';
 import { Link } from 'react-router-dom';
+
+import Button from './UI/buttons/Button';
+import './Patient.css';
 
 //Will props ID refer to user ID or patient ID?
 //Refer to PatientList.js

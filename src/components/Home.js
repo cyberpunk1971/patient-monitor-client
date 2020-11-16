@@ -1,6 +1,10 @@
 import React, { useState } from 'react';
 import axios from 'axios';
+
+import Button from './UI/buttons/Button';
 import Input from './UI/Input';
+import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
+//import {  } from '../utils/validators';
 
 const Home = () => {
     const [formData, setFormData] = useState({
@@ -15,74 +19,63 @@ const Home = () => {
 
     const onSubmit = async e => {
         e.preventDefault();
-        
-            const newUser = {
-                username,
-                email,
-                password
-            }
 
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+        const newUser = {
+            username,
+            email,
+            password
+        }
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                const body = JSON.stringify(newUser);
-                const response = await axios.post('http://localhost:8080/api/users/register', body, config);
-                console.log(response.data);
-
-            } catch (err) {
-                console.error(err.response.data);
             }
-         }
+            const body = JSON.stringify(newUser);
+            const response = await axios.post('http://localhost:8080/api/users/register', body, config);
+            console.log(response.data);
+
+        } catch (err) {
+            console.error(err.response.data);
+        }
+    }
 
     return <>
         <div className="class= col-6 side_div_left">
             <h2>Patient Monitor</h2>
             <h3>is an application for efficient management of
                 patient data.</h3>
-                <p>Issues: Address routes for users/patients in App.js and Dashboard.js.</p>
-                   <p>Address PatientList.js and Patient.js ID key/value.</p> 
-                
+            <p>Issues: Address routes for users/patients in App.js and Dashboard.js.</p>
+            <p>Address PatientList.js and Patient.js ID key/value.</p>
+
             <button>DEMO</button>
         </div>
 
         <div className="register-div">
             <form className="register-form" onSubmit={e => onSubmit(e)}>
-                <input
+                <Input
                     element="input"
                     type="text"
-                    placeholder="Username"
                     label="Username"
-                    name="username"
-                    value={username}
-                    onChange={e => onChange(e)}
-                    required />
+                    validators={[VALIDATOR_REQUIRE()]}
+                    errorText="Please enter a username." />
 
-                <input
+                <Input
                     element="input"
-                    type="email"
-                    placeholder="Email"
+                    type="text"
                     label="Email"
-                    name="email"
-                    value={email}
-                    onChange={e => onChange(e)}
-                    required />
+                    validators={[VALIDATOR_EMAIL()]}
+                    errorText="Please enter a valid email address." />
 
-                <input
+                <Input
                     element="input"
-                    type="password"
-                    placeholder="Password"
+                    type="text"
                     label="Password"
-                    name="password"
-                    value={password}
-                    onChange={e => onChange(e)}
-                    required />
+                    validators={[VALIDATOR_MINLENGTH(8), VALIDATOR_MAXLENGTH(72)]}
+                    errorText="Please enter a valid password between 8 and 72 characters." />
 
-                
-
-                <input type="submit" value="Register" />
+                <Button type="submit" value="submit">SUBMIT</Button>
             </form>
 
 
