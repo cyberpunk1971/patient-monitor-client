@@ -1,80 +1,89 @@
-import React, { useState } from 'react';
+import React, { useReducer, useCallback } from 'react';
 import axios from 'axios';
+
+import Button from './UI/buttons/Button';
 import Input from './UI/Input';
+import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, formReducer } from '../utils/validators';
+
+
 
 const Home = () => {
-    const [formData, setFormData] = useState({
-       
-        email: '',
-        password: ''
+    const [formState, dispatch] = useReducer(formReducer, {
+        inputs: {
+            email: {
+                value: '',
+                isValid: false
+            },
+            password: {
+                value: '',
+                isValid: false
+            }
+        }
+
+
     });
 
-    const { email, password } = formData;
-
-    const onChange = e => setFormData({ ...formData, [e.target.name]: e.target.value });
+    const inputChangeHandler = useCallback((id, value, isValid) => {
+        dispatch({
+            type: 'INPUT_CHANGE',
+            value: value,
+            isValid: isValid,
+            inputId: id
+        });
+    }, []);
 
     const onSubmit = async e => {
         e.preventDefault();
-        
-            const newUser = {
-               
-                email,
-                password
-            }
+        const {  email, password } = formState.inputs
+        console.log(formState);
+        const newUser = {
+           
+            email: email.value,
+            password: password.value
+        }
 
-            try {
-                const config = {
-                    headers: {
-                        'Content-Type': 'application/json'
-                    }
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json'
                 }
-                const body = JSON.stringify(newUser);
-                const response = await axios.post('http://localhost:8080/api/users/login', body, config);
-                console.log(response.data);
-                localStorage.authToken = response.data.token;
-                localStorage.userName = response.data.userName;
-                //props.location.push('/dashboard');
-            } catch (err) {
-                console.error(err.response.data);
             }
-        
+            const body = JSON.stringify(newUser);
+            const response = await axios.post('http://localhost:8080/api/users/login', body, config);
+            localStorage.authToken = response.data.token;
+            localStorage.username = response.data.username;
+            console.log(response.data);
+
+        } catch (err) {
+            console.error(err);
+        }
     }
 
     return <>
-        <div className="class= col-6 side_div_left">
-            <h2>Patient Monitor</h2>
-            <h3>is an application for managing
-                patient data.</h3>
-            <button><a href="dashboard.html">DEMO</a></button>
-        </div>
+       
 
         <div className="register-div">
             <form className="register-form" onSubmit={e => onSubmit(e)}>
-               
 
-                <input
+                <Input
+                    id="email"
                     element="input"
-                    type="email"
-                    placeholder="Email"
+                    type="text"
                     label="Email"
-                    name="email"
-                    value={email}
-                    onChange={e => onChange(e)}
-                    required />
+                    validators={[VALIDATOR_EMAIL()]}
+                    errorText="Please enter a valid email address."
+                    onInput={inputChangeHandler} />
 
-                <input
+                <Input
+                    id="password"
                     element="input"
-                    type="password"
-                    placeholder="Password"
+                    type="text"
                     label="Password"
-                    name="password"
-                    value={password}
-                    onChange={e => onChange(e)}
-                    required />
+                    validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8), VALIDATOR_MAXLENGTH(72)]}
+                    errorText="Please enter a valid password between 8 and 72 characters."
+                    onInput={inputChangeHandler} />
 
-                
-
-                <input type="submit" value="Register" />
+                <Button type="submit" value="submit">SUBMIT</Button>
             </form>
 
 

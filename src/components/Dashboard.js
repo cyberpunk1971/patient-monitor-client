@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Link, Redirect, useParams } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import Button from './UI/buttons/Button';
 import PatientList from './PatientList';
 import './Dashboard.css';

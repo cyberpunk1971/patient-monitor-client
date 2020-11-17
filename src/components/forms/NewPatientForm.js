@@ -1,33 +1,9 @@
-import React, { isValidElement, useCallback, useReducer } from 'react';
+import React, { useCallback, useReducer } from 'react';
 
 import Button from '../UI/buttons/Button';
 import Input from './UI/Input';
-import { VALIDATOR_REQUIRE } from '../../utils/validators';
+import { VALIDATOR_REQUIRE, formReducer } from '../../utils/validators';
 import './NewPatientForm.css';
-
-const formReducer = (state, action) => {
-    switch (action.type) {
-        case 'INPUT_CHANGE':
-            let formIsValid = true;
-            for (const inputId in state.inputs) {
-                if (inputId === action.inputId)  {
-                    formIsValid = formIsValid && action.isValid;
-                } else {
-                    formIsValid = formIsValid && state.inputs[inputId].isValid;
-                }
-            }
-            return {
-                ...state,
-                inputs: {
-                    ...state.inputs,
-                    [action.inputId]: { value: action.value, isValid: action.isValid}
-                },
-                isValid: formIsValid
-            };
-            default:
-                return state;
-    }
-};
 
 const NewPatientForm = () => {
     const [formState, dispatch] = useReducer(formReducer, {
@@ -69,7 +45,33 @@ const NewPatientForm = () => {
         });
     }, []);
 
-    return <form className="patient-form">
+    const onSubmit = async e => {
+        e.preventDefault();
+        const {  email, password } = formState.inputs
+        console.log(formState);
+        const newUser = {
+           
+            email: email.value,
+            password: password.value
+        }
+
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.authToken
+                }
+            }
+            const body = JSON.stringify(newUser);
+            const response = await axios.post('http://localhost:8080/api/users/login', body, config);
+            console.log(response.data);
+
+        } catch (err) {
+            console.error(err);
+        }
+    }
+
+    return <form className="patient-form" onSubmit={onSubmit}>
         <Input
             id="firstname"
             element="input"
@@ -86,7 +88,8 @@ const NewPatientForm = () => {
             type="text"
             label="Middle name"
             //validators={[VALIDATOR_REQUIRE()]} 
-            errorText="Please enter required fields." />
+            errorText="Please enter required fields."
+            onInput={inputChangeHandler} />
 
         <Input
             id="lastname"
@@ -94,7 +97,9 @@ const NewPatientForm = () => {
             type="text"
             label="Last name"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter required fields." />
+            errorText="Please enter required fields." 
+            onInput={inputChangeHandler}
+            />
 
         <Input
             id="age"
@@ -102,7 +107,9 @@ const NewPatientForm = () => {
             type="text"
             label="age"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter required fields." />
+            errorText="Please enter required fields." 
+            onInput={inputChangeHandler}
+            />
 
         <Input
             id="gender"
@@ -110,7 +117,9 @@ const NewPatientForm = () => {
             type="text"
             label="gender"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter required fields." />
+            errorText="Please enter required fields." 
+            onInput={inputChangeHandler}
+            />
 
         <Input
             id="race"
@@ -118,7 +127,9 @@ const NewPatientForm = () => {
             type="text"
             label="race"
             validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter required fields." />
+            errorText="Please enter required fields." 
+            onInput={inputChangeHandler}
+            />
             <Button type="submit" disabled={!formState.isValid}>Add Patient</Button>
     </form>;
 };
