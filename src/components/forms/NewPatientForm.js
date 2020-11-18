@@ -1,25 +1,26 @@
 import React, { useCallback, useReducer } from 'react';
 
 import Button from '../UI/buttons/Button';
-import Input from './UI/Input';
+import Input from '../UI/Input';
 import { VALIDATOR_REQUIRE, formReducer } from '../../utils/validators';
 import './NewPatientForm.css';
 
 const NewPatientForm = () => {
+
     const [formState, dispatch] = useReducer(formReducer, {
         inputs: {
-            firstname: {
+            name: {
                 value: '',
                 isValid: false
             },
-            middlename: {
-                value: '',
-                isValid: false
-            },
-            lastname: {
-                value: '',
-                isValid: false
-            },
+            // middlename: {
+            //     value: '',
+            //     isValid: false
+            // },
+            // lastname: {
+            //     value: '',
+            //     isValid: false
+            // },
             age: {
                 value: '',
                 isValid: false
@@ -45,35 +46,43 @@ const NewPatientForm = () => {
         });
     }, []);
 
-    const onSubmit = async e => {
-        e.preventDefault();
-        const {  email, password } = formState.inputs
-        console.log(formState);
-        const newUser = {
+    const submitHandler = event => {
+        event.preventDefault();
+        console.log(formState.inputs);
+    };
+
+    // const onSubmit = async e => {
+    //     e.preventDefault();
+    //     const {  email, password } = formState.inputs
+    //     console.log(formState);
+    //     const newUser = {
            
-            email: email.value,
-            password: password.value
-        }
+    //         email: email.value,
+    //         password: password.value
+    //     }
 
-        try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.authToken
-                }
-            }
-            const body = JSON.stringify(newUser);
-            const response = await axios.post('http://localhost:8080/api/users/login', body, config);
-            console.log(response.data);
+    //     try {
+    //         const config = {
+    //             headers: {
+    //                 'Content-Type': 'application/json',
+    //                 'Authorization': 'Bearer ' + localStorage.authToken
+    //             }
+    //         }
+    //         const body = JSON.stringify(newUser);
+    //         const response = await axios.post('http://localhost:8080/api/users/login', body, config);
+    //         console.log(response.data);
 
-        } catch (err) {
-            console.error(err);
-        }
-    }
+    //     } catch (err) {
+    //         console.error(err);
+    //     }
+    // }
 
-    return <form className="patient-form" onSubmit={onSubmit}>
+        //TODO: Edit Patient model to "name" property only
+        //TODO: Add address and contact info here
+        //TODO: Add date of birth property to pt model, newPatient, and editPatient forms
+    return <form className="patient-form" onSubmit={submitHandler}>
         <Input
-            id="firstname"
+            id="name"
             element="input"
             type="text"
             label="First name"
@@ -81,13 +90,13 @@ const NewPatientForm = () => {
             errorText="Please enter required fields."
             onInput={inputChangeHandler}
         />
-
-        <Input
+            
+        {/* <Input
             id="middlename"
             element="input"
             type="text"
             label="Middle name"
-            //validators={[VALIDATOR_REQUIRE()]} 
+            validators={[VALIDATOR_REQUIRE()]} 
             errorText="Please enter required fields."
             onInput={inputChangeHandler} />
 
@@ -99,7 +108,7 @@ const NewPatientForm = () => {
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter required fields." 
             onInput={inputChangeHandler}
-            />
+            /> */}
 
         <Input
             id="age"
