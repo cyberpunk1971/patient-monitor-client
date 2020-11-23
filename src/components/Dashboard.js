@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Button from './UI/buttons/Button';
 import PatientList from './PatientList';
@@ -43,7 +44,7 @@ const Dashboard = (props) => {
 
     return (
         <>
-            <Button>Add Patient</Button>
+            <Link to="/patients/new">Add Patient</Link>
             <PatientList patients={myPatients} />
 
         </>

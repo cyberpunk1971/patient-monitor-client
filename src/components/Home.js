@@ -3,12 +3,11 @@ import axios from 'axios';
 
 import Button from './UI/buttons/Button';
 import Input from './UI/Input';
-import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, formReducer } from '../utils/validators';
+import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
+import { useForm } from '../hooks/form-hook';
 
-
-
-const Home = () => {
-    const [formState, dispatch] = useReducer(formReducer, {
+const Home = (props) => {
+    const [formState, inputChangeHandler] = useForm({
         inputs: {
             username: {
                 value: '',
@@ -26,15 +25,6 @@ const Home = () => {
 
 
     });
-
-    const inputChangeHandler = useCallback((id, value, isValid) => {
-        dispatch({
-            type: 'INPUT_CHANGE',
-            value: value,
-            isValid: isValid,
-            inputId: id
-        });
-    }, []);
 
     const onSubmit = async e => {
         e.preventDefault();
@@ -54,7 +44,9 @@ const Home = () => {
             }
             const body = JSON.stringify(newUser);
             const response = await axios.post('http://localhost:8080/api/users/register', body, config);
-            console.log(response.data);
+            localStorage.authToken = response.data.token
+            localStorage.username = response.data.username;
+            props.history.push('/dashboard');
 
         } catch (err) {
             console.error(err);

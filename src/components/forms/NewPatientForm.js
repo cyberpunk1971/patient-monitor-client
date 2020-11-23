@@ -1,81 +1,66 @@
 import React, { useCallback, useReducer } from 'react';
-
+import axios from 'axios';
 import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
-import { VALIDATOR_REQUIRE, formReducer } from '../../utils/validators';
+import { VALIDATOR_REQUIRE } from '../../utils/validators';
+import { useForm } from '../../hooks/form-hook';
 import './NewPatientForm.css';
 
 const NewPatientForm = () => {
-
-    const [formState, dispatch] = useReducer(formReducer, {
-        inputs: {
-            name: {
-                value: '',
-                isValid: false
-            },
-            // middlename: {
-            //     value: '',
-            //     isValid: false
-            // },
-            // lastname: {
-            //     value: '',
-            //     isValid: false
-            // },
-            age: {
-                value: '',
-                isValid: false
-            },
-            gender: {
-                value: '',
-                isValid: false
-            },
-            race: {
-                value: '',
-                isValid: false
-            }
+    const [formState, inputChangeHandler] = useForm({
+        name: {
+            value: '',
+            isValid: false
         },
-        isValid: false
-    });
+        // middlename: {
+        //     value: '',
+        //     isValid: false
+        // },
+        // lastname: {
+        //     value: '',
+        //     isValid: false
+        // },
+        age: {
+            value: '',
+            isValid: false
+        },
+        gender: {
+            value: '',
+            isValid: false
+        },
+        race: {
+            value: '',
+            isValid: false
+        }
+    }, false);
 
-    const inputChangeHandler = useCallback((id, value, isValid) => {
-        dispatch({
-            type: 'INPUT_CHANGE', 
-            value: value, 
-            isValid: isValid, 
-            inputId: id
-        });
-    }, []);
-
-    const submitHandler = event => {
-        event.preventDefault();
-        console.log(formState.inputs);
-    };
-
-    // const onSubmit = async e => {
-    //     e.preventDefault();
-    //     const {  email, password } = formState.inputs
-    //     console.log(formState);
-    //     const newUser = {
+    const submitHandler = async e => {
+        e.preventDefault();
+        const { name, age, gender, race } = formState.inputs
+        console.log(formState);
+        const newPatient = {
            
-    //         email: email.value,
-    //         password: password.value
-    //     }
+          name: name.value,
+          age: age.value,
+          gender: gender.value,
+          race: race.value
+        }
 
-    //     try {
-    //         const config = {
-    //             headers: {
-    //                 'Content-Type': 'application/json',
-    //                 'Authorization': 'Bearer ' + localStorage.authToken
-    //             }
-    //         }
-    //         const body = JSON.stringify(newUser);
-    //         const response = await axios.post('http://localhost:8080/api/users/login', body, config);
-    //         console.log(response.data);
+        try {
+            const config = {
+                headers: {
+                    'Content-Type': 'application/json',
+                    'Authorization': 'Bearer ' + localStorage.authToken
+                }
+            }
+            const body = JSON.stringify(newPatient);
+            const response = await axios.post('http://localhost:8080/api/patients', body, config);
+            console.log(response.data);
 
-    //     } catch (err) {
-    //         console.error(err);
-    //     }
-    // }
+        } catch (err) {
+            console.error(err);
+        }
+    }
 
         //TODO: Edit Patient model to "name" property only
         //TODO: Add address and contact info here
@@ -85,7 +70,7 @@ const NewPatientForm = () => {
             id="name"
             element="input"
             type="text"
-            label="First name"
+            label="Name"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter required fields."
             onInput={inputChangeHandler}

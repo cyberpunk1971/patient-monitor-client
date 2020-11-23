@@ -17,19 +17,14 @@ function App() {
     <div className="app">
       <MainNavigation />
       <main>
-      <Switch>
-        <Route exact path='/' component={Home} />
-        <Route exact path='/login' component={Login} />
-        <Route exact path='/:uid/dashboard'>
-          <Dashboard />
-        </Route>
-        <Route exact path='/patients/new'>
-          <NewPatientForm />
-        </Route>
-        <Route exact path='/patients/:pid'>
-          <EditPatient />
-        </Route>
-      </Switch>
+        <Switch>
+          <Route exact path='/' component={Home} />
+          <Route exact path='/login' component={Login} />
+          <Route exact path='/dashboard' component={Dashboard} />
+          <Route exact path='/patients/new' component={NewPatientForm} />
+          <Route exact path='/patients/:pid' component={EditPatient} />
+
+        </Switch>
       </main>
     </div>
   );

@@ -3,12 +3,12 @@ import axios from 'axios';
 
 import Button from './UI/buttons/Button';
 import Input from './UI/Input';
-import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH, formReducer } from '../utils/validators';
-
+import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
+import { useForm } from '../hooks/form-hook';
 
 
 const Home = () => {
-    const [formState, dispatch] = useReducer(formReducer, {
+    const [formState, inputChangeHandler] = useForm({
         inputs: {
             email: {
                 value: '',
@@ -22,15 +22,6 @@ const Home = () => {
 
 
     });
-
-    const inputChangeHandler = useCallback((id, value, isValid) => {
-        dispatch({
-            type: 'INPUT_CHANGE',
-            value: value,
-            isValid: isValid,
-            inputId: id
-        });
-    }, []);
 
     const onSubmit = async e => {
         e.preventDefault();
