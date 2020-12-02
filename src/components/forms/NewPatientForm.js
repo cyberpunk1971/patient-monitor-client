@@ -6,20 +6,13 @@ import { VALIDATOR_REQUIRE } from '../../utils/validators';
 import { useForm } from '../../hooks/form-hook';
 import './NewPatientForm.css';
 
-const NewPatientForm = () => {
+const NewPatientForm = (props) => {
     const [formState, inputChangeHandler] = useForm({
         name: {
             value: '',
             isValid: false
         },
-        // middlename: {
-        //     value: '',
-        //     isValid: false
-        // },
-        // lastname: {
-        //     value: '',
-        //     isValid: false
-        // },
+        
         age: {
             value: '',
             isValid: false
@@ -34,7 +27,7 @@ const NewPatientForm = () => {
         }
     }, false);
 
-    const submitHandler = async e => {
+    const submitHandler = async (e) => {
         e.preventDefault();
         const { name, age, gender, race } = formState.inputs
         console.log(formState);
@@ -55,7 +48,10 @@ const NewPatientForm = () => {
             }
             const body = JSON.stringify(newPatient);
             const response = await axios.post('http://localhost:8080/api/patients', body, config);
-            console.log(response.data);
+            //console.log(response.data);
+            localStorage.authToken = response.data.token
+            localStorage.username = response.data.username;
+            props.history.push('/dashboard');
 
         } catch (err) {
             console.error(err);
@@ -76,25 +72,6 @@ const NewPatientForm = () => {
             onInput={inputChangeHandler}
         />
             
-        {/* <Input
-            id="middlename"
-            element="input"
-            type="text"
-            label="Middle name"
-            validators={[VALIDATOR_REQUIRE()]} 
-            errorText="Please enter required fields."
-            onInput={inputChangeHandler} />
-
-        <Input
-            id="lastname"
-            element="input"
-            type="text"
-            label="Last name"
-            validators={[VALIDATOR_REQUIRE()]}
-            errorText="Please enter required fields." 
-            onInput={inputChangeHandler}
-            /> */}
-
         <Input
             id="age"
             element="input"
@@ -124,7 +101,7 @@ const NewPatientForm = () => {
             errorText="Please enter required fields." 
             onInput={inputChangeHandler}
             />
-            <Button type="submit" disabled={!formState.isValid}>Add Patient</Button>
+            <Button type="submit" value="submit" disabled={!formState.isValid}>Add Patient</Button>
     </form>;
 };
 

@@ -5,6 +5,7 @@ const PatientApiService = {
   getPatients() {
     return fetch(`${config.API_ENDPOINT}/patients`, {
       headers: {
+        'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
     })
       .then(res =>

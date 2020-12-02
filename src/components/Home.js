@@ -5,6 +5,7 @@ import Button from './UI/buttons/Button';
 import Input from './UI/Input';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
 import { useForm } from '../hooks/form-hook';
+import './forms/NewPatientForm.css'
 
 const Home = (props) => {
     const [formState, inputChangeHandler] = useForm({
@@ -54,7 +55,7 @@ const Home = (props) => {
     }
 
     return <>
-        <div className="class= col-6 side_div_left">
+        <div className="patient-form">
             <h2>Patient Monitor</h2>
             <h3>is an application for efficient management of
                 patient data.</h3>
@@ -65,7 +66,7 @@ const Home = (props) => {
         </div>
 
         <div className="register-div">
-            <form className="register-form" onSubmit={e => onSubmit(e)}>
+            <form className="patient-form" onSubmit={e => onSubmit(e)}>
                 <Input
                     id="username"
                     element="input"
@@ -88,7 +89,7 @@ const Home = (props) => {
                 <Input
                     id="password"
                     element="input"
-                    type="text"
+                    type="password"
                     label="Password"
                     validators={[VALIDATOR_MINLENGTH(8), VALIDATOR_MAXLENGTH(72)]}
                     errorText="Please enter a valid password between 8 and 72 characters."

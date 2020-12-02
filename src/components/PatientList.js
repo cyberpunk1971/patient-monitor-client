@@ -11,12 +11,14 @@ const PatientList = (props) => {
             </div>
         );
     }
+    console.log(props.patients);
     //Should the key be the patient ID or the user ID?
     //Refer to {Link} in Patient.js
     return <ul className="patient-list">
         {props.patients.map((patient) => {
             return (
                 <Patient
+                history={props.history}
                     key={patient.id}
                     id={patient.id}
                     name={patient.name}

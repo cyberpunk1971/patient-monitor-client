@@ -5,9 +5,11 @@ import Button from './UI/buttons/Button';
 import Input from './UI/Input';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
 import { useForm } from '../hooks/form-hook';
+import TokenService from '../services/token-service';
+import './forms/NewPatientForm.css'
 
 
-const Home = () => {
+const Login = (props) => {
     const [formState, inputChangeHandler] = useForm({
         inputs: {
             email: {
@@ -19,16 +21,14 @@ const Home = () => {
                 isValid: false
             }
         }
-
-
     });
 
     const onSubmit = async e => {
         e.preventDefault();
-        const {  email, password } = formState.inputs
+        const { email, password } = formState.inputs
         console.log(formState);
         const newUser = {
-           
+
             email: email.value,
             password: password.value
         }
@@ -41,8 +41,10 @@ const Home = () => {
             }
             const body = JSON.stringify(newUser);
             const response = await axios.post('http://localhost:8080/api/users/login', body, config);
-            localStorage.authToken = response.data.token;
+            localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
+            TokenService.saveAuthToken(response.data.token);
+            props.history.push('/dashboard');
             console.log(response.data);
 
         } catch (err) {
@@ -51,10 +53,8 @@ const Home = () => {
     }
 
     return <>
-       
-
         <div className="register-div">
-            <form className="register-form" onSubmit={e => onSubmit(e)}>
+            <form className="patient-form" onSubmit={e => onSubmit(e)}>
 
                 <Input
                     id="email"
@@ -82,4 +82,4 @@ const Home = () => {
     </>
 }
 
-export default Home;
+export default Login;

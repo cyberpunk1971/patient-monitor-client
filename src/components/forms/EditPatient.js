@@ -130,7 +130,7 @@ const EditPatient = () => {
 
     const editPatientSubmitHandler = (event) => {
         event.preventDefault();
-        console.log(formState.inputs);
+        console.log(formState.inputs, 'line 133');
     };
 
     if (!existingPatient) {
@@ -144,12 +144,13 @@ const EditPatient = () => {
     };
 
     return (
-            <form className="patient-form" onSubmit={editPatientSubmitHandler}>
+            
+           <form className="patient-form" onSubmit={editPatientSubmitHandler}>
                 <Input
                     id="name"
                     element="input"
                     type="text"
-                    label="name"
+                    label="Name"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -161,7 +162,7 @@ const EditPatient = () => {
                     id="age"
                     element="input"
                     type="text"
-                    label="age"
+                    label="Age"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -173,7 +174,7 @@ const EditPatient = () => {
                     id="gender"
                     element="input"
                     type="text"
-                    label="gender"
+                    label="Gender"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -185,7 +186,7 @@ const EditPatient = () => {
                     id="race"
                     element="input"
                     type="text"
-                    label="race"
+                    label="Race"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -197,7 +198,7 @@ const EditPatient = () => {
                     id="address"
                     element="input"
                     type="text"
-                    label="address"
+                    label="Address"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -209,7 +210,7 @@ const EditPatient = () => {
                     id="city"
                     element="input"
                     type="text"
-                    label="city"
+                    label="City"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -221,7 +222,7 @@ const EditPatient = () => {
                     id="state"
                     element="input"
                     type="text"
-                    label="usState"
+                    label="State"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -233,7 +234,7 @@ const EditPatient = () => {
                     id="zip"
                     element="input"
                     type="text"
-                    label="zip"
+                    label="Zip"
                     validators={[VALIDATOR_MINLENGTH(5), VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={inputChangeHandler}
@@ -245,7 +246,7 @@ const EditPatient = () => {
                     id="phone"
                     element="input"
                     type="text"
-                    label="phone"
+                    label="Phone"
                     validators={[VALIDATOR_REQUIRE()]}
                     errorText="Please enter all fields"
                     onInput={() => { }}
@@ -256,6 +257,7 @@ const EditPatient = () => {
                 <Button type="submit" disabled={!formState.isValid}>Update</Button>
 
             </form>
+            
         );
 };
 
