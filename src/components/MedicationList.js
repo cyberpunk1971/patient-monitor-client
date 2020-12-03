@@ -1,7 +1,7 @@
 import React from 'react';
 import Medication from './forms/AddMedForm';
 
-const MedicationList = () => {
+const MedicationList = (props) => {
 
 };
 
