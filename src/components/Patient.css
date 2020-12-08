@@ -18,3 +18,8 @@
 h3 {
     font-size: 12px;
 }
+
+.med-container {
+    height: 20rem;
+    width: 100%;
+}

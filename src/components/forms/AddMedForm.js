@@ -48,7 +48,7 @@ const Medication = (props) => {
                 <Input
                 element="input"
                     type="text"
-                    label="Brand name"
+                    label="Medication:"
                     onInput={inputChangeHandler}
                 />
             </form>

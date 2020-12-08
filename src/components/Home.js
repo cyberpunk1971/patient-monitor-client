@@ -55,16 +55,17 @@ const Home = (props) => {
     }
 
     return <>
-        <div className="patient-form">
+        {/* <div className="patient-form">
             <h2>Patient Monitor</h2>
             <h3>is an application for efficient management of
                 patient data.</h3>
-            <p>Issues: Address routes for users/patients in App.js and Dashboard.js.</p>
-            <p>Address PatientList.js and Patient.js ID key/value.</p>
-
+           
             <button>DEMO</button>
-        </div>
+        </div> */}
 
+        <header>
+            <h1>Register</h1>
+        </header>
         <div className="register-div">
             <form className="patient-form" onSubmit={e => onSubmit(e)}>
                 <Input
@@ -97,6 +98,10 @@ const Home = (props) => {
 
                 <Button type="submit" value="submit">SUBMIT</Button>
             </form>
+            <div>
+                <p>Already Have an Account?</p>
+                <Button to='/login'>Login</Button>
+            </div>
 
 
         </div>

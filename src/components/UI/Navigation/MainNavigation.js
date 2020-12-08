@@ -19,6 +19,7 @@ const MainNavigation = props => {
         setDrawerIsOpen(false);
     };
 
+
     return (
         <>
             {drawerIsOpen && <Backdrop onClick={closeDrawerHandler} />}

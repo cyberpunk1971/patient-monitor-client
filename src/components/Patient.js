@@ -1,8 +1,9 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from './UI/buttons/Button';
 import MedicationList from './MedicationList';
+import Modal from './UI/Modal';
 import './Patient.css';
 import axios from 'axios';
 
@@ -10,7 +11,15 @@ import axios from 'axios';
 //Will props ID refer to user ID or patient ID?
 //Refer to PatientList.js
 const Patient = (props) => {
+    const [showMeds, setShowMeds] = useState(false);
 
+    const openMedsHandler = () => {
+        setShowMeds(true);
+    };
+
+    const closeMedsHandler = () => {
+        setShowMeds(false);
+    };
     //TODO: Fix edit pt functionality
     const editPatient = () => {
         axios.patch(`http://localhost:8080/api/patients/${props.id}`)
@@ -27,8 +36,17 @@ const Patient = (props) => {
         props.history.push('/medications')
     }
     return (
-        <Link to={`/${props.id}/patients`}>
+        <>
+        <Modal show={showMeds} onCancel={closeMedsHandler} header={props.name} contentClass="place-item__modal-content" footerClass="place-item__modal-actions"
+            footer={<Button onClick={closeMedsHandler}>CLOSE</Button>}
+        >
+        <div className="med-container">
+            <h2>Meds</h2>
+        </div>
+        </Modal>
+        
             <li className="patient-card">
+            <Link to={`/patients/${props.id}`}>
                 <div className="patient-demos">
                     <h3>ID: {props.id}</h3>
                     <h3>{props.name}</h3>
@@ -43,11 +61,13 @@ const Patient = (props) => {
                     <h3>{props.zip}</h3>
                     <h3>{props.phone}</h3>
                 </div>
+                </Link>
                 <Button onClick={deletePatient}>Delete</Button>
                 <Button onClick={editPatient}>Edit</Button>
-                <Button onClick={medList}>Medications</Button>
+                <Button onClick={openMedsHandler}>Medications</Button>
             </li>
-        </Link>
+    
+        </>
     );
 };
 
