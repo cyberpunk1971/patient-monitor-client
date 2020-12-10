@@ -11,16 +11,16 @@ import MedicationList from './components/MedicationList';
 import NewPatientForm from './components/forms/NewPatientForm';
 import ShowPatient from './components/ShowPatient';
 
-
-
-
 function App() {
-  const [user, setUser] = useState(null);
+  //using localStorage.username as arg for useState keeps
+  //logged in user in local storage, i.e. page refresh
+  //To logout clean local storage and clean context
+  const [user, setUser] = useState(localStorage.username);
 
   const store = {
-    user: {get: user, set: setUser}
+    user, setUser
   };
-
+console.log(store);
   return (
     <AppContext.Provider value={store}>
     <div className="app">

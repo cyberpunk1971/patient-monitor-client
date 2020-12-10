@@ -1,6 +1,6 @@
-import React, { useReducer, useCallback } from 'react';
+import React, { useReducer, useCallback, useContext } from 'react';
 import axios from 'axios';
-
+import AppContext from '../AppContext';
 import Button from './UI/buttons/Button';
 import Input from './UI/Input';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
@@ -10,6 +10,8 @@ import './forms/NewPatientForm.css'
 
 
 const Login = (props) => {
+    const context = useContext(AppContext);
+
     const [formState, inputChangeHandler] = useForm({
         inputs: {
             email: {
@@ -44,6 +46,7 @@ const Login = (props) => {
             localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
             TokenService.saveAuthToken(response.data.token);
+            context.setUser(response.data.username);
             props.history.push('/dashboard');
             console.log(response.data);
 
