@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 import Button from './UI/buttons/Button';
 import MedicationList from './MedicationList';
 import Modal from './UI/Modal';
+import PatientApiService from '../services/patient-service';
 import './Patient.css';
 import axios from 'axios';
 
@@ -21,14 +22,13 @@ const Patient = (props) => {
         setShowMeds(false);
     };
     //TODO: Fix edit pt functionality
-    const editPatient = () => {
-        axios.patch(`http://localhost:8080/api/patients/${props.id}`)
-        props.history.push('/dashboard');
+    const editPatient = async () => {
+        props.history.push(`/patients/${props.id}/edit`)
     }
 
-    const deletePatient = () => {
-        axios.delete(`http://localhost:8080/api/patients/${props.id}`)
-        props.history.push('/dashboard');
+    const deletePatient = async () => {
+        await PatientApiService.deletePatient(props.id);
+        props.update();
     }
 
     const medList = () => {

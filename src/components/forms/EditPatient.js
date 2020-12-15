@@ -6,39 +6,9 @@ import { useForm } from '../../hooks/form-hook';
 import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
 import './NewPatientForm.css';
+import PatientApiService from '../../services/patient-service';
 
-
-const PATIENTS = [
-    {
-        id: 'p1',
-        name: 'John Doe',
-        age: '49',
-        gender: 'Male',
-        race: 'Caucasian',
-        address: '123 E. Main St',
-        city: 'Anytown',
-        usState: 'USA',
-        zip: '12345',
-        phone: '555-555-5555',
-        creator: 'u1'
-    },
-    {
-        id: 'p2',
-        name: 'Jane Doe',
-        age: '49',
-        gender: 'female',
-        race: 'Caucasian',
-        address: '123 E. Main St',
-        city: 'Anytown',
-        usState: 'USA',
-        zip: '12345',
-        phone: '555-555-5555',
-        creator: 'u2'
-    }
-
-];
-
-const EditPatient = () => {
+const EditPatient = (props) => {
     const [isLoading, setIsLoading] = useState(true);
     const pid = useParams().pid;
 
@@ -83,9 +53,10 @@ const EditPatient = () => {
         false
     );
 
-    const existingPatient = PATIENTS.find(p => p.id === pid);
 
-    useEffect(() => {
+    useEffect( async () => {
+        //Take id from URL
+        const existingPatient = await PatientApiService.getPatient(props.match.params.pid)
         setFormData({
             name: {
                 value: existingPatient.name,
@@ -125,7 +96,7 @@ const EditPatient = () => {
             }
         }, true);
         setIsLoading(false);
-    }, [setFormData, existingPatient]);
+    }, [setFormData]);
 
 
     const editPatientSubmitHandler = (event) => {
@@ -133,20 +104,23 @@ const EditPatient = () => {
         console.log(formState.inputs, 'line 133');
     };
 
-    if (!existingPatient) {
-        return (
-            <h2>Patient not found!</h2>
-        );
-    }
+    // if (!existingPatient) {
+    //     return (
+    //         <h2>Patient not found!</h2>
+    //     );
+    // }
 
-    if (isLoading) {
-        <h2>Loading...</h2>
+    if (isLoading || !formState.loaded) {
+        return <h2>Loading...</h2>
+        
     };
-
+    console.log(formState);
+    console.log(formState.inputs.name.value, "Name: Value");
     return (
             
            <form className="patient-form" onSubmit={editPatientSubmitHandler}>
-                <Input
+           
+            <Input
                     id="name"
                     element="input"
                     type="text"
@@ -157,8 +131,10 @@ const EditPatient = () => {
                     initialValue={formState.inputs.name.value}
                     initialValid={formState.inputs.name.isValid}
                 />
+           
+                
 
-                <Input
+                {/* <Input
                     id="age"
                     element="input"
                     type="text"
@@ -252,7 +228,7 @@ const EditPatient = () => {
                     onInput={() => { }}
                     initialValue={formState.inputs.phone.value}
                     initialValid={formState.inputs.phone.isValid}
-                />
+                /> */}
 
                 <Button type="submit" disabled={!formState.isValid}>Update</Button>
 

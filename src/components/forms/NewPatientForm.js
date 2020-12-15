@@ -4,6 +4,7 @@ import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
 import { VALIDATOR_REQUIRE } from '../../utils/validators';
 import { useForm } from '../../hooks/form-hook';
+import PatientApiService from '../../services/patient-service';
 import './NewPatientForm.css';
 
 const NewPatientForm = (props) => {
@@ -40,17 +41,10 @@ const NewPatientForm = (props) => {
         }
 
         try {
-            const config = {
-                headers: {
-                    'Content-Type': 'application/json',
-                    'Authorization': 'Bearer ' + localStorage.authToken
-                }
-            }
-            const body = JSON.stringify(newPatient);
-            const response = await axios.post('http://localhost:8080/api/patients', body, config);
+            const response = await PatientApiService.addPatient(newPatient);
             //console.log(response.data);
-            localStorage.authToken = response.data.token
-            localStorage.username = response.data.username;
+            localStorage.authToken = response.token
+            localStorage.username = response.username;
             props.history.push('/dashboard');
 
         } catch (err) {
@@ -72,10 +66,10 @@ const NewPatientForm = (props) => {
             onInput={inputChangeHandler}
         />
             
-        <Input
+        {/* <Input
             id="age"
             element="input"
-            type="text"
+            type="number"
             label="age"
             validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter required fields." 
@@ -101,7 +95,7 @@ const NewPatientForm = (props) => {
             errorText="Please enter required fields." 
             onInput={inputChangeHandler}
             />
-            <Button type="submit" value="submit" disabled={!formState.isValid}>Add Patient</Button>
+            <Button type="submit" value="submit" disabled={!formState.isValid}>Add Patient</Button> */}
     </form>;
 };
 

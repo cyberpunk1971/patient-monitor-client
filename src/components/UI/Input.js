@@ -4,6 +4,7 @@ import { validate } from '../../utils/validators';
 import './Input.css';
 
 const inputReducer = (state, action) => {
+    console.log(state, action, "Hello from inputReducer")
     switch (action.type) {
         case 'CHANGE':
             return {
@@ -23,12 +24,15 @@ const inputReducer = (state, action) => {
 };
 
 const Input = props => {
-    const [inputState, dispatch] = useReducer(inputReducer, {
-        value: props.initialValue || '',
+    const initialState =  {
+        value: props.initialValue,
         isTouched: false,
         isValid: props.initialValid || false
-    });
-
+    }
+    console.log(props.initialValue)
+    const [inputState, dispatch] = useReducer(inputReducer, {...initialState});
+    console.log(JSON.stringify(initialState), JSON.stringify(props.initialValue), JSON.stringify(inputState))
+    console.log(initialState, props.initialValue, inputState);
     const { id, onInput} = props;
     const { value, isValid } = inputState;
 
@@ -49,7 +53,7 @@ const Input = props => {
             type: 'TOUCH'
         });
     };
-
+    
     const element = props.element === 'input' ?
         (
             <input

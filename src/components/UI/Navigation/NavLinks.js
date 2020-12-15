@@ -21,23 +21,27 @@ const NavLinks = props => {
             <li>
                 <NavLink to='/'>Home</NavLink>
             </li>
-            {context.user ? (<>
-                <li>
-                    <NavLink to='/dashboard'>My Patients</NavLink>
-                </li>
-                <li>
-                    <NavLink to='/patients/new'>Add Patient</NavLink>
-                </li>
-                <li>
-                    <button onClick={logoutUser}>Logout</button>
-                </li>
+            {context.user ? (
+                <>
+                    <li>
+                        <NavLink to='/dashboard'>My Patients</NavLink>
+                    </li>
+                    <li>
+                        <NavLink to='/patients/new'>Add Patient</NavLink>
+                    </li>
+                    <li>
+                        <button onClick={logoutUser}>Logout</button>
+                    </li>
 
-            </>) : (<li>
-                <NavLink to='/login'>Login</NavLink>
-            </li>)}
+                </>
+            ) : (
+                    <li>
+                        <NavLink to='/login'>Login</NavLink>
+                    </li>
+                )}
         </ul>
     );
-//use conditional to remove login link from login page
+    //use conditional to remove login link from login page
 
 };
 

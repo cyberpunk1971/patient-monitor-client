@@ -1,4 +1,4 @@
-import {React, useEffect, useState} from 'react';
+import { React, useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { useParams } from 'react-router-dom';
 import Button from './UI/buttons/Button';
@@ -12,23 +12,25 @@ import './Dashboard.css';
 const Dashboard = (props) => {
     const [patients, setPatients] = useState([]);
     useEffect(() => {
-       PatientApiService.getPatients()
-       .then((items) => {
-           setPatients(items)
-         console.log(patients, items);
-       })
-       .catch(error => {
-           console.log(error);
-       })
-        
-      }, []);
-    
+        update();
 
+    }, []);
+
+    const update = () => {
+        PatientApiService.getPatients()
+            .then((items) => {
+                setPatients(items)
+                console.log(patients, items);
+            })
+            .catch(error => {
+                console.log(error);
+            })
+    }
 
     return (
         <>
             <Link to="/patients/new">Add Patient</Link>
-            <PatientList patients={patients} history={props.history}/>
+            <PatientList patients={patients} update={update} history={props.history} />
 
         </>
     );

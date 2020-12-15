@@ -18,7 +18,8 @@ const PatientList = (props) => {
         {props.patients.map((patient) => {
             return (
                 <Patient
-                history={props.history}
+                    update={props.update}
+                    history={props.history}
                     key={patient.id}
                     id={patient.id}
                     name={patient.name}
@@ -31,7 +32,7 @@ const PatientList = (props) => {
                     zip={patient.zip}
                     phone={patient.phone}
                     creatorId={patient.creator}
-                     />
+                />
             );
         })}
     </ul>
