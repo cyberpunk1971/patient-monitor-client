@@ -4,6 +4,7 @@ import { Route, Switch } from 'react-router-dom';
 import AppContext from './AppContext';
 import Dashboard from './components/Dashboard';
 import EditPatient from './components/forms/EditPatient';
+import Register from './components/Register';
 import Home from './components/Home';
 import Login from './components/Login';
 import MainNavigation from './components/UI/Navigation/MainNavigation';
@@ -28,6 +29,7 @@ console.log(store);
       <main>
         <Switch>
           <Route exact path='/' component={Home} />
+          <Route exact path='/register' component={Register} />
           <Route exact path='/login' component={Login} />
           <Route exact path='/dashboard' component={Dashboard} />
           <Route exact path='/patients/new' component={NewPatientForm} />

@@ -56,7 +56,7 @@ const EditPatient = (props) => {
 
     useEffect( async () => {
         //Take id from URL
-        const existingPatient = await PatientApiService.getPatient(props.match.params.pid)
+        const existingPatient = await PatientApiService.getPatient(pid)
         setFormData({
             name: {
                 value: existingPatient.name,
@@ -99,9 +99,12 @@ const EditPatient = (props) => {
     }, [setFormData]);
 
 
-    const editPatientSubmitHandler = (event) => {
+    const editPatientSubmitHandler = async (event) => {
         event.preventDefault();
         console.log(formState.inputs, 'line 133');
+        const {name, zip} = formState.inputs
+        const patient = {id: pid, name: name.value, zip: zip.value}
+        await PatientApiService.editPatient(patient)
     };
 
     // if (!existingPatient) {

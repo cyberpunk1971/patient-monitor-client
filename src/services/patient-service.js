@@ -57,7 +57,7 @@ const PatientApiService = {
   },
 
   editPatient(patient) {
-    return fetch(`${config.API_ENDPOINT}/patients`, {
+    return fetch(`${config.API_ENDPOINT}/patients/${patient.id}`, {
       method: 'PATCH',
       headers: {
         'content-type': 'application/json',

@@ -11,8 +11,9 @@ const NavLinks = props => {
 
     const logoutUser = () => {
         context.setUser(null);
-        props.history.push('/');
+
         localStorage.clear();
+        props.history.push('/');
     };
     console.log(context);
 
@@ -35,9 +36,14 @@ const NavLinks = props => {
 
                 </>
             ) : (
-                    <li>
-                        <NavLink to='/login'>Login</NavLink>
-                    </li>
+                    <>
+                        <li>
+                            <NavLink to='/register'>Register</NavLink>
+                        </li>
+                        <li>
+                            <NavLink to='/login'>Login</NavLink>
+                        </li>
+                    </>
                 )}
         </ul>
     );
