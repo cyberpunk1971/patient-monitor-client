@@ -1,5 +1,4 @@
 import React, { useCallback, useReducer } from 'react';
-import axios from 'axios';
 import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
 import { VALIDATOR_REQUIRE } from '../../utils/validators';
@@ -43,8 +42,6 @@ const NewPatientForm = (props) => {
         try {
             const response = await PatientApiService.addPatient(newPatient);
             //console.log(response.data);
-            localStorage.authToken = response.token
-            localStorage.username = response.username;
             props.history.push('/dashboard');
 
         } catch (err) {

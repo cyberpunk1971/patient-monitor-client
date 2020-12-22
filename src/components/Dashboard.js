@@ -6,8 +6,6 @@ import PatientList from './PatientList';
 import PatientApiService from '../services/patient-service';
 import './Dashboard.css';
 
-
-
 //In App.js, where the routes are, do I write /dashboard/:uid, or /:uid/dashboard? Or does it matter?
 const Dashboard = (props) => {
     const [patients, setPatients] = useState([]);

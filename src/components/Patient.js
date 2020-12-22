@@ -31,10 +31,7 @@ const Patient = (props) => {
         props.update();
     }
 
-    const medList = () => {
-        axios.get(`http://localhost:8080/api/medications/${props.id}`)
-        props.history.push('/medications')
-    }
+    
     return (
         <>
         <Modal show={showMeds} onCancel={closeMedsHandler} header={props.name} contentClass="place-item__modal-content" footerClass="place-item__modal-actions"
@@ -64,7 +61,7 @@ const Patient = (props) => {
                 </Link>
                 <Button onClick={deletePatient}>Delete</Button>
                 <Button onClick={editPatient}>Edit</Button>
-                <Button onClick={openMedsHandler}>Medications</Button>
+                <Button to={'/medications/' + props.id}>Medications</Button>
             </li>
     
         </>

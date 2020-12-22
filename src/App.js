@@ -8,6 +8,7 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Login from './components/Login';
 import MainNavigation from './components/UI/Navigation/MainNavigation';
+import Medication from './components/Medication';
 import MedicationList from './components/MedicationList';
 import NewPatientForm from './components/forms/NewPatientForm';
 import ShowPatient from './components/ShowPatient';
@@ -35,7 +36,7 @@ console.log(store);
           <Route exact path='/patients/new' component={NewPatientForm} />
           <Route exact path='/patients/:pid/' component={ShowPatient} />
           <Route exact path='/patients/:pid/edit' component={EditPatient} />
-          <Route exact path='/medications' component={MedicationList} />
+          <Route exact path='/medications/:pid' component={MedicationList} />
         </Switch>
       </main>
     </div>
