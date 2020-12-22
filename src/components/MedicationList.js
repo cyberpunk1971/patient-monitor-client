@@ -20,8 +20,9 @@ const MedicationList = (props) => {
     }
     let modal;
     if (showModal) {
-        modal = <AddMedForm 
-            onCancel = {setShowModal}
+        modal = <AddMedForm
+            patientId={props.match.params.pid}
+            onCancel={setShowModal}
         />
     }
     console.log(props.medications);
