@@ -22,12 +22,12 @@ const Medication = (props) => {
         const { name } = formState.inputs
         console.log(formState);
         const newMed = {
-            patientId: props.patientId,
+            
             name: name.value
         }
 
         try {
-            const response = await MedicationApiService.addMedication(newMed);
+            const response = await MedicationApiService.addMedication(newMed, props.patientId);
             //props.history.push('/dashboard');
             console.log(response);
             props.onCancel(false);

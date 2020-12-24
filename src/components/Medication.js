@@ -1,29 +1,21 @@
 import React, {useState, useEffect} from 'react';
-import axios from 'axios';
-
 import MedicationApiService from '../services/medication-service';
-
-import MedicationList from '../components/MedicationList';
-import AddMedForm from '../components/forms/AddMedForm';
+import Button from './UI/buttons/Button';
 
 
 const Medication = (props) => {
-    const [medications, setMedication] = useState([]);
-    useEffect(() => {
-        medList()
-    })
-
-    const medList = async () => {
-       const response = await MedicationApiService.getMedicationByPatientId
-       setMedication(response.data);
-    }
-
+    
+const deleteMedication = async () => {
+   await MedicationApiService.deleteMedication(props.id, props.patientId);
+}
+    
+//TODO add other inputs and also in AddMedForm
     return (
     <>
-    <MedicationList medications={medications}/>
-    
-    <AddMedForm />
-    
+        {props.name}
+        <Button onClick={() => {
+            deleteMedication()
+        }}></Button>
     </>
     )
 };

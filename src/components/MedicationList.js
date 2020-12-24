@@ -1,5 +1,6 @@
 import React from 'react';
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import PatientApiService from '../services/patient-service';
 
 import AddMedForm from '../components/forms/AddMedForm';
 import Button from './UI/buttons/Button';
@@ -9,8 +10,32 @@ import './PatientList.css';
 const MedicationList = (props) => {
 
     const [showModal, setShowModal] = useState(false);
+
+
+    const [patient, setPatient] = useState({
+        medications: []
+    });
+
+    useEffect(() => {
+        //mount action
+        console.log(props)
+        if (!props.match) {
+            return;
+        }
+        PatientApiService.getPatient(props.match.params.pid)
+            .then(data => {
+                setPatient(data);
+                console.log(data);
+            });
+        //end mount action
+        // return () => {
+        //     //unMount action
+        // }
+    }, [])
+
+
     let noMeds;
-    if (props.medications.length === 0) {
+    if (patient.medications.length === 0) {
         noMeds = (
             <div className='center'>
                 <h2>No medications on file...</h2>
@@ -32,16 +57,17 @@ const MedicationList = (props) => {
     return <>
 
         <ul className="patient-list">
-            {props.medications.map((medication) => {
+            {patient.medications.map((medication) => {
                 return (
 
-                    <Medication>
+                    <Medication
+                    patientId={props.match.params.pid}
                         history={props.history}
                     key={medication.id}
                     id={medication.id}
                     name={medication.name}
                     creatorId={medication.creator}
-                    </Medication>
+                    />
 
                 );
             })}
