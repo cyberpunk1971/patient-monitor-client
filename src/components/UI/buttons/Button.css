@@ -1,4 +1,4 @@
-.button {
+/* .button {
     font: inherit;
     padding: 0.5rem 1.5rem;
     border: none;
@@ -15,11 +15,11 @@
     outline: none;
   }
   
-  /* .button:hover,
+  .button:hover,
   .button:active {
     background: #ff4382;
     border-color: #ff4382;
-  } */
+  }
   
   .button--inverse {
     background: transparent;
@@ -58,4 +58,4 @@
   
   .button--big {
     font-size: 1.5rem;
-  }
+  } */
