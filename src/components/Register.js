@@ -9,7 +9,7 @@ import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINL
 import Button from './UI/buttons/Button';
 import Input from './UI/Input';
 
-import './forms/NewPatientForm.css'
+import classes from './Register.module.css'
 
 const Register = (props) => {
     const context = useContext(AppContext);
@@ -37,7 +37,7 @@ const Register = (props) => {
     const onSubmit = async e => {
         e.preventDefault();
         const { username, email, password } = formState.inputs
-        console.log(formState);
+        // console.log(formState);
         const newUser = {
             username: username.value,
             email: email.value,
@@ -75,8 +75,8 @@ const Register = (props) => {
         <header>
             <h1>Register</h1>
         </header>
-        <div className="register-div">
-            <form className="patient-form" onSubmit={e => onSubmit(e)}>
+        <div>
+            <form className={classes.register_form} onSubmit={e => onSubmit(e)}>
                 <Input
                     id="username"
                     element="input"
@@ -105,7 +105,7 @@ const Register = (props) => {
                     errorText="Please enter a valid password between 8 and 72 characters."
                     onInput={inputChangeHandler} />
 
-                <Button type="submit" value="submit">SUBMIT</Button>
+                <button className={classes.register_btn} type="submit" value="submit">SUBMIT</button>
             </form>
             <div>
                 <p>Already Have an Account?</p>

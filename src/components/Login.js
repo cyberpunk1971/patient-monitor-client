@@ -1,12 +1,13 @@
 import React, { useReducer, useCallback, useContext } from 'react';
 import axios from 'axios';
+
 import AppContext from '../AppContext';
-import Button from './UI/buttons/Button';
 import Input from './UI/Input';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
 import { useForm } from '../hooks/form-hook';
 import TokenService from '../services/token-service';
-import './forms/NewPatientForm.css'
+
+import classes from './Login.module.css';
 
 
 const Login = (props) => {
@@ -28,7 +29,7 @@ const Login = (props) => {
     const onSubmit = async e => {
         e.preventDefault();
         const { email, password } = formState.inputs
-        console.log(formState);
+        // console.log(formState);
         const newUser = {
 
             email: email.value,
@@ -56,8 +57,8 @@ const Login = (props) => {
     }
 
     return <>
-        <div className="register-div">
-            <form className="patient-form" onSubmit={e => onSubmit(e)}>
+        <div>
+            <form className={classes.login_form} onSubmit={e => onSubmit(e)}>
 
                 <Input
                     id="email"
@@ -77,7 +78,7 @@ const Login = (props) => {
                     errorText="Please enter a valid password between 8 and 72 characters."
                     onInput={inputChangeHandler} />
 
-                <Button type="submit" value="submit">SUBMIT</Button>
+                <button className={classes.login_btn} type="submit" value="submit">SUBMIT</button>
             </form>
 
 

@@ -1,4 +1,4 @@
-.register_form {
+.login_form {
     list-style: none;
     margin: 0 auto;
     padding: 1rem;
@@ -10,13 +10,15 @@
     transition: transform .3s;
   }
 
-  .register_form:hover,
-  .register_btn:hover {
+  .login_form:hover,
+  .login_btn:hover {
       transform: scale(1.1);
       box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   }
 
-  .register_btn
+  .login_btn
  {
     transition: transform .2s;
  }  
+
+ 
