@@ -46,7 +46,7 @@ const Medication = (props) => {
                     props.onCancel(false);
                 }}>
                 <Input
-                id="name"
+                    id="name"
                     element="input"
                     type="text"
                     label="Medication:"

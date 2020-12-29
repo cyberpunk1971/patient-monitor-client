@@ -57,6 +57,9 @@ const Login = (props) => {
     }
 
     return <>
+    <header>
+            <h1>Login</h1>
+        </header>
         <div>
             <form className={classes.login_form} onSubmit={e => onSubmit(e)}>
 
@@ -72,7 +75,7 @@ const Login = (props) => {
                 <Input
                     id="password"
                     element="input"
-                    type="text"
+                    type="password"
                     label="Password"
                     validators={[VALIDATOR_REQUIRE(), VALIDATOR_MINLENGTH(8), VALIDATOR_MAXLENGTH(72)]}
                     errorText="Please enter a valid password between 8 and 72 characters."

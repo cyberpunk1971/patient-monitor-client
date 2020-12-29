@@ -33,8 +33,8 @@ const MedicationApiService = {
   },
 
 
-  deleteMedication(medication, patientId) {
-    return fetch(`${config.API_ENDPOINT}/medications/${patientId}/${medication}`, {
+  deleteMedication(medicationId, patientId) {
+    return fetch(`${config.API_ENDPOINT}/medications/${patientId}/${medicationId}`, {
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },

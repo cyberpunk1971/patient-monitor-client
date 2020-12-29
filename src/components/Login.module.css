@@ -7,18 +7,37 @@
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
     border-radius: 6px;
     background: white;
-    transition: transform .3s;
+    text-align: left;
+    transition: transform 0.3s;
   }
-
+  
+  header {
+      text-align: center;
+  }
+  
+  .p {
+      text-align: center;
+  }
+  
   .login_form:hover,
   .login_btn:hover {
-      transform: scale(1.1);
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
+    transform: scale(1.1);
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
   }
-
-  .login_btn
- {
-    transition: transform .2s;
- }  
-
- 
+  
+  .login_btn {
+    background: red;
+    cursor: pointer;
+    border: none;
+    font-size: 2rem;
+    border-radius: 5px;
+    padding: 10px 15px;
+    transition: transform 0.2s;
+  }
+  
+  @media (min-width: 280px) and (max-width: 768px) {
+      .login_btn {
+          font-size: 1rem;
+          padding: 5px;
+      }
+  }

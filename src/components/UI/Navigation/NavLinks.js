@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { NavLink, withRouter } from 'react-router-dom';
 import AppContext from '../../../AppContext';
 
-import './NavLinks.css';
+import classes from './NavLinks.module.css';
 
 
 
@@ -18,7 +18,7 @@ const NavLinks = props => {
     console.log(context);
 
     return (
-        <ul className="nav-links">
+        <ul className={classes.nav_links}>
             <li>
                 <NavLink to='/'>Home</NavLink>
             </li>

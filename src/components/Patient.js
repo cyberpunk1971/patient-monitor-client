@@ -5,8 +5,7 @@ import Button from './UI/buttons/Button';
 import MedicationList from './MedicationList';
 import Modal from './UI/Modal';
 import PatientApiService from '../services/patient-service';
-import './Patient.css';
-import axios from 'axios';
+import classes from './Patient.module.css';
 
 
 //Will props ID refer to user ID or patient ID?
@@ -42,16 +41,16 @@ const Patient = (props) => {
         </div>
         </Modal>
         
-            <li className="patient-card">
+            <li className={classes.patient_card}>
             <Link to={`/patients/${props.id}`}>
-                <div className="patient-demos">
+                <div className={classes.patient_demos}>
                     <h3>ID: {props.id}</h3>
                     <h3>{props.name}</h3>
                     <h3>{props.age}</h3>
                     <h3>{props.gender}</h3>
                     <h3>{props.race}</h3>
                 </div>
-                <div className="patient-contact-info">
+                <div className={classes.patient_demos}>
                     <h3>{props.address}</h3>
                     <h3>{props.city}</h3>
                     <h3>{props.state}</h3>

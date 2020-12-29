@@ -16,17 +16,21 @@ const MedicationList = (props) => {
         medications: []
     });
 
+    const refreshAfterDelete = () => {
+        PatientApiService.getPatient(props.match.params.pid)
+            .then(data => {
+                setPatient(data);
+                console.log(data);
+            });
+    }
+
     useEffect(() => {
         //mount action
         console.log(props)
         if (!props.match) {
             return;
         }
-        PatientApiService.getPatient(props.match.params.pid)
-            .then(data => {
-                setPatient(data);
-                console.log(data);
-            });
+        refreshAfterDelete();
         //end mount action
         // return () => {
         //     //unMount action
@@ -39,7 +43,6 @@ const MedicationList = (props) => {
         noMeds = (
             <div className='center'>
                 <h2>No medications on file...</h2>
-
             </div>
         );
     }
@@ -61,12 +64,13 @@ const MedicationList = (props) => {
                 return (
 
                     <Medication
-                    patientId={props.match.params.pid}
+                        refreshAfterDelete={refreshAfterDelete}
+                        patientId={props.match.params.pid}
                         history={props.history}
-                    key={medication.id}
-                    id={medication.id}
-                    name={medication.name}
-                    creatorId={medication.creator}
+                        key={medication.id}
+                        id={medication.id}
+                        name={medication.name}
+                        creatorId={medication.creator}
                     />
 
                 );

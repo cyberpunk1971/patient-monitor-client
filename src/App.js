@@ -13,6 +13,9 @@ import MedicationList from './components/MedicationList';
 import NewPatientForm from './components/forms/NewPatientForm';
 import ShowPatient from './components/ShowPatient';
 
+import classes from './App.module.css'
+
+
 function App() {
   //using localStorage.username as arg for useState keeps
   //logged in user in local storage, i.e. page refresh
@@ -25,7 +28,7 @@ function App() {
 console.log(store);
   return (
     <AppContext.Provider value={store}>
-    <div className="app">
+    <div className={classes.App}>
       <MainNavigation />
       <main>
         <Switch>

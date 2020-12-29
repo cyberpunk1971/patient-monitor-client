@@ -23,7 +23,7 @@ const ShowPatient = (props) => {
         <>
             <div>
                 <ul>
-                    {patient.id}
+                    ID: {patient.id}
                     <h2>{patient.name}</h2>
                 </ul>
             </div>

@@ -105,6 +105,7 @@ const EditPatient = (props) => {
         const {name, zip} = formState.inputs
         const patient = {id: pid, name: name.value, zip: zip.value}
         await PatientApiService.editPatient(patient)
+        props.history.push('/dashboard');
     };
 
     // if (!existingPatient) {
@@ -137,7 +138,7 @@ const EditPatient = (props) => {
            
                 
 
-                {/* <Input
+                <Input
                     id="age"
                     element="input"
                     type="text"
@@ -231,7 +232,7 @@ const EditPatient = (props) => {
                     onInput={() => { }}
                     initialValue={formState.inputs.phone.value}
                     initialValid={formState.inputs.phone.isValid}
-                /> */}
+                />
 
                 <Button type="submit" disabled={!formState.isValid}>Update</Button>
 

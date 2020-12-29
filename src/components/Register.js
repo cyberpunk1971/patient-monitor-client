@@ -75,7 +75,7 @@ const Register = (props) => {
         <header>
             <h1>Register</h1>
         </header>
-        <div>
+        <div className={classes.p}>
             <form className={classes.register_form} onSubmit={e => onSubmit(e)}>
                 <Input
                     id="username"
