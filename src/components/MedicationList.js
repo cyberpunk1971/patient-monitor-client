@@ -16,7 +16,7 @@ const MedicationList = (props) => {
         medications: []
     });
 
-    const refreshAfterDelete = () => {
+    const refresh = () => {
         PatientApiService.getPatient(props.match.params.pid)
             .then(data => {
                 setPatient(data);
@@ -30,7 +30,8 @@ const MedicationList = (props) => {
         if (!props.match) {
             return;
         }
-        refreshAfterDelete();
+        refresh();
+       
         //end mount action
         // return () => {
         //     //unMount action
@@ -49,6 +50,7 @@ const MedicationList = (props) => {
     let modal;
     if (showModal) {
         modal = <AddMedForm
+            refresh={refresh}
             patientId={props.match.params.pid}
             onCancel={setShowModal}
         />
@@ -64,12 +66,16 @@ const MedicationList = (props) => {
                 return (
 
                     <Medication
-                        refreshAfterDelete={refreshAfterDelete}
+                        refresh={refresh}
                         patientId={props.match.params.pid}
                         history={props.history}
                         key={medication.id}
                         id={medication.id}
                         name={medication.name}
+                        dosage={medication.dosage}
+                        frequency={medication.frequency}
+                        route={medication.route}
+                        date={medication.date}
                         creatorId={medication.creator}
                     />
 

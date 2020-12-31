@@ -8,6 +8,7 @@ const Medication = (props) => {
     const deleteMedication = async () => {
         await MedicationApiService.deleteMedication(props.id, props.patientId);
         props.refreshAfterDelete();
+       
     }
 
     //TODO add other inputs and also in AddMedForm
@@ -15,6 +16,10 @@ const Medication = (props) => {
         <>
             <li>
                 {props.name}
+                {props.dosage}
+                {props.frequency}
+                {props.route}
+                {props.date}
                 <Button onClick={() => {
                     deleteMedication()
                 }}>Delete</Button>

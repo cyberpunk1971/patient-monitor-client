@@ -21,6 +21,7 @@ const MedicationApiService = {
 
   getMedicationByPatientId(patientId) {
     return fetch(`${config.API_ENDPOINT}/medications/${patientId}`, {
+      method: 'GET',
       headers: {
         'authorization': `bearer ${TokenService.getAuthToken()}`,
       },
