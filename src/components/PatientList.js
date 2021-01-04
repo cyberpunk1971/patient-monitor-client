@@ -24,11 +24,14 @@ const PatientList = (props) => {
                     id={patient.id}
                     name={patient.name}
                     age={patient.age}
+                    dob={patient.dob}
                     gender={patient.gender}
                     race={patient.race}
                     address={patient.address}
+                    street={patient.street}
+                    unit={patient.unit}
                     city={patient.city}
-                    state={patient.state}
+                    usState={patient.usState}
                     zip={patient.zip}
                     phone={patient.phone}
                     creatorId={patient.creator}

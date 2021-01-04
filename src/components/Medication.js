@@ -2,28 +2,31 @@ import React, { useState, useEffect } from 'react';
 import MedicationApiService from '../services/medication-service';
 import Button from './UI/buttons/Button';
 
+import classes from './Medication.module.css';
+
 
 const Medication = (props) => {
 
     const deleteMedication = async () => {
         await MedicationApiService.deleteMedication(props.id, props.patientId);
-        props.refreshAfterDelete();
-       
+        props.refresh();
+
     }
 
     //TODO add other inputs and also in AddMedForm
     return (
         <>
-            <li>
-                {props.name}
-                {props.dosage}
-                {props.frequency}
-                {props.route}
-                {props.date}
+            <ul className={classes.medication_item_list}>
+                <li className={classes.medication_item}>Name: {props.name}</li>
+                <li className={classes.medication_item}>Dosage: {props.dosage}</li>
+                <li className={classes.medication_item}>Frequency: {props.frequency}</li>
+                <li className={classes.medication_item}>Route: {props.route}</li>
+                <li className={classes.medication_item}>Date: {props.date}</li>
+                {props.children}
                 <Button onClick={() => {
                     deleteMedication()
                 }}>Delete</Button>
-            </li>
+            </ul>
         </>
     )
 };

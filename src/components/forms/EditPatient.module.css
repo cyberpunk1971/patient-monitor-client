@@ -1,0 +1,8 @@
+.edit_btn {
+    color: black;
+    background: transparent;
+    border: none;
+    font-family: Josefin Sans;
+    cursor: pointer;
+    font-size: 16px;
+}

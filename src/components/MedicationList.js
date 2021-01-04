@@ -5,7 +5,8 @@ import PatientApiService from '../services/patient-service';
 import AddMedForm from '../components/forms/AddMedForm';
 import Button from './UI/buttons/Button';
 import Medication from './Medication';
-import './PatientList.css';
+import './MedicationList.module.css';
+import classes from './MedicationList.module.css';
 
 const MedicationList = (props) => {
 
@@ -31,7 +32,7 @@ const MedicationList = (props) => {
             return;
         }
         refresh();
-       
+
         //end mount action
         // return () => {
         //     //unMount action
@@ -61,24 +62,27 @@ const MedicationList = (props) => {
     //Refer to {Link} in Medication.js
     return <>
 
-        <ul className="patient-list">
+        <ul className={classes.medication_list}>
             {patient.medications.map((medication) => {
                 return (
-
-                    <Medication
-                        refresh={refresh}
-                        patientId={props.match.params.pid}
-                        history={props.history}
-                        key={medication.id}
-                        id={medication.id}
-                        name={medication.name}
-                        dosage={medication.dosage}
-                        frequency={medication.frequency}
-                        route={medication.route}
-                        date={medication.date}
-                        creatorId={medication.creator}
-                    />
-
+                    <>
+                        
+                            <Medication
+                                refresh={refresh}
+                                patientId={props.match.params.pid}
+                                history={props.history}
+                                key={medication.id}
+                                id={medication.id}
+                                name={medication.name} 
+                                dosage={medication.dosage}
+                                frequency={medication.frequency}
+                                route={medication.route}
+                                date={medication.date}
+                                creatorId={medication.creator}>
+                                
+                            </Medication>
+                        
+                    </>
                 );
             })}
             {noMeds}

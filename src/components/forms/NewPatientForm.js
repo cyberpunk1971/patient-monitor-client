@@ -16,6 +16,10 @@ const NewPatientForm = (props) => {
             value: '',
             isValid: false
         },
+        dob: {
+            value: '',
+            isValid: false
+        },
         gender: {
             value: '',
             isValid: false
@@ -32,14 +36,15 @@ const NewPatientForm = (props) => {
             value: '',
             isvalid: false
         },
-        city: {
-            value: '',
-            isValid: false
-        },
         unit: {
             value: '',
             isValid: false
         },
+        city: {
+            value: '',
+            isValid: false
+        },
+       
         usState: {
             value: '',
             isValid: false
@@ -208,7 +213,7 @@ const NewPatientForm = (props) => {
             errorText="Please enter required fields."
             onInput={inputChangeHandler}
         />
-        <Button type="submit" value="submit" disabled={!formState.isValid}>Add Patient</Button>
+        <Button type="submit" value="submit">Add Patient</Button>
     </form>;
 };
 
