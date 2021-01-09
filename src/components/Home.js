@@ -1,6 +1,5 @@
-import React, { useReducer, useCallback } from 'react';
+import React from 'react';
 
-import Button from './UI/buttons/Button';
 import classes from './Home.module.css';
 const Home = () => {
     return (
@@ -14,8 +13,6 @@ const Home = () => {
                     <p className={classes.Home_p}>Patient Monitor allows doctors, nurses, and allied health professionals to manage critical patient data with ease.</p>
                     <p className={classes.Home_p}>To demonstrate the function of the application, simply click the DEMO button below. To access the full suite of Patient Monitor capabilities, such as data persistence over time, please register a new account. If you are already registered, please login.</p>
                     <ol> TODOS:
-                    <li>Delete patient shows props.update is not a function error, upon manual refresh, keys show but no data rendered, pt is deleted from db, however. </li>
-                        <li>Error in console states that I need a "key" property and to check MedicationList component.</li>
                         <li>Need to render ID and name of patient on medication list screen and maybe pt ID in URL, also. </li>
                         <li>Need to render Username on Dashboard screen. </li>
                         <li>Write DEMO function.</li>

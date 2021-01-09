@@ -37,6 +37,9 @@ const EditPatient = (props) => {
             value: '',
             isValid: false
         },
+        unit: {
+            value: ''
+        },
         city: {
             value: '',
             isValid: false
@@ -98,8 +101,7 @@ const EditPatient = (props) => {
             },
 
             unit: {
-                value: existingPatient.unit,
-                isValid: true
+                value: existingPatient.unit
             },
 
             city: {
@@ -267,7 +269,7 @@ const EditPatient = (props) => {
                 element="input"
                 type="text"
                 label="Unit"
-                validators={[VALIDATOR_REQUIRE()]}
+                //validators={[VALIDATOR_REQUIRE()]}
                 errorText="Please enter all fields"
                 onInput={inputChangeHandler}
                 initialValue={formState.inputs.unit.value}

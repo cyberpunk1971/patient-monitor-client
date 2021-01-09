@@ -25,7 +25,10 @@ const TokenService = {
     return jwtDecode(jwt)
   },
   readJwtToken() {
-    return TokenService.parseJwt(TokenService.getAuthToken())
+    if (TokenService.hasAuthToken()) {
+      return TokenService.parseJwt(TokenService.getAuthToken())
+    }
+    
   },
   _getMsUntilExpiry(payload) {
     /*

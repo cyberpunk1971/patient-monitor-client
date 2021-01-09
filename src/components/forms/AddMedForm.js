@@ -7,6 +7,8 @@ import Input from '../UI/Input';
 import Modal from '../UI/Modal';
 import { useForm } from '../../hooks/form-hook';
 
+import classes from './AddMedForm.module.css'
+
 const AddMedication = (props) => {
 
 
@@ -102,7 +104,7 @@ const AddMedication = (props) => {
                     onInput={inputChangeHandler}
                 />
 
-                <Button type="submit" value="submit" >Add</Button>
+                <button className={classes.confirm_add_btn} type="submit" value="submit" >&#43;</button>
 
             </form>
         </>

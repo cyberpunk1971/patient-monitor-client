@@ -1,3 +1,32 @@
-.medication_item {
-    
+h2 {
+    margin-bottom: 10px;
+}
+
+h3 {
+    margin-top: 0px;
+}
+
+ul {
+    padding-left: 0px;
+}
+
+.delete_med_btn {
+    color: red;
+    background: transparent;
+    border: none;
+    font-family: "Josefin Sans";
+    font-size: 1.0rem;
+    transition: transform 0.4s;
+    padding-left: 0;
+}
+
+.delete_med_btn:hover {
+    font-size: 1.2rem;
+    cursor: pointer;
+    transform: scale(1.1);
+}
+
+.medication_item_list {
+   margin-top: 0;
+   margin-bottom: 10px;
 }

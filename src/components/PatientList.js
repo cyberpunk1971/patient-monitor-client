@@ -18,22 +18,9 @@ const PatientList = (props) => {
         {props.patients.map((patient) => {
             return (
                 <Patient
-                    update={props.update}
                     history={props.history}
                     key={patient.id}
-                    id={patient.id}
-                    name={patient.name}
-                    age={patient.age}
-                    dob={patient.dob}
-                    gender={patient.gender}
-                    race={patient.race}
-                    address={patient.address}
-                    street={patient.street}
-                    unit={patient.unit}
-                    city={patient.city}
-                    usState={patient.usState}
-                    zip={patient.zip}
-                    phone={patient.phone}
+                    {...patient}
                     creatorId={patient.creator}
                 />
             );

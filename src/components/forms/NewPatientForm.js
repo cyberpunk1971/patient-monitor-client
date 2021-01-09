@@ -1,10 +1,11 @@
 import React from 'react';
-import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
+
 import { VALIDATOR_REQUIRE } from '../../utils/validators';
 import { useForm } from '../../hooks/form-hook';
 import PatientApiService from '../../services/patient-service';
-import './NewPatientForm.css';
+
+import classes from './NewPatientForm.module.css';
 
 const NewPatientForm = (props) => {
     const [formState, inputChangeHandler] = useForm({
@@ -37,8 +38,7 @@ const NewPatientForm = (props) => {
             isvalid: false
         },
         unit: {
-            value: '',
-            isValid: false
+            value: ''
         },
         city: {
             value: '',
@@ -93,7 +93,7 @@ const NewPatientForm = (props) => {
     //TODO: Add address and contact info here
     //TODO: Add date of birth property to pt model, newPatient, and editPatient forms
     console.log(formState);
-    return <form className="patient-form" onSubmit={submitHandler}>
+    return <form className={classes.patient_form} onSubmit={submitHandler}>
         <Input
             id="name"
             element="input"
@@ -179,7 +179,7 @@ const NewPatientForm = (props) => {
             element="input"
             type="text"
             label="Unit"
-            validators={[VALIDATOR_REQUIRE()]}
+            //validators={[VALIDATOR_REQUIRE()]}
             errorText="Please enter required fields."
             onInput={inputChangeHandler}
         />
@@ -213,7 +213,7 @@ const NewPatientForm = (props) => {
             errorText="Please enter required fields."
             onInput={inputChangeHandler}
         />
-        <Button type="submit" value="submit">Add Patient</Button>
+        <button className={classes.add_patient_btn} type="submit" value="submit">Submit</button>
     </form>;
 };
 

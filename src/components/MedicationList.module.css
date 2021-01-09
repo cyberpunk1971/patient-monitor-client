@@ -4,3 +4,12 @@
     align-items: center;
     flex-direction: column;
 } */
+
+.add_med_btn {
+    border-color: green;
+    color: green;
+    background: transparent;
+    font-size: 3.0rem;
+    font-family: "Josefin Sans";
+    cursor: pointer;
+}

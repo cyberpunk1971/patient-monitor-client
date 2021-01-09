@@ -23,9 +23,11 @@ const Medication = (props) => {
                 <li className={classes.medication_item}>Route: {props.route}</li>
                 <li className={classes.medication_item}>Date: {props.date}</li>
                 {props.children}
-                <Button onClick={() => {
+                
+                <button className={classes.delete_med_btn} onClick={() => {
                     deleteMedication()
-                }}>Delete</Button>
+                }}>Delete</button>
+                
             </ul>
         </>
     )

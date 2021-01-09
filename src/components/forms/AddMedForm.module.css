@@ -1,0 +1,8 @@
+.confirm_add_btn {
+  border-color: green;
+  color: green;
+  background: transparent;
+  font-size: 3rem;
+  font-family: "Josefin Sans";
+  cursor: pointer;
+}

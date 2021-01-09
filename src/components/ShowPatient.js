@@ -1,3 +1,4 @@
+import classes from './ShowPatient.module.css';
 import React, { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 import PatientApiService from '../services/patient-service';
@@ -31,12 +32,12 @@ const ShowPatient = (props) => {
     }, [])
 
     const editPatient = async () => {
-        props.history.push(`/patients/${patient.id}/edit`)
+        props.history.push(`/patients/${patient.id}/edit`);
     }
 
     const deletePatient = async () => {
         await PatientApiService.deletePatient(patient.id);
-        props.update();
+        props.history.push('/dashboard');
     }
     return (
         <>
@@ -63,9 +64,12 @@ const ShowPatient = (props) => {
 
 
             </div>
+            <div className={classes.btn_div}>
+            <Link to={'/medications/' + patient.id}>Medications</Link>
             <button style={styles} onClick={deletePatient}>Delete</button>
             <button style={styles} onClick={editPatient}>Edit</button>
-            <Link to={'/medications/' + patient.id}>Medications</Link>
+            
+            </div>
 
         </>
     );

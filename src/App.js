@@ -1,6 +1,9 @@
 import React, { useState, useContext } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
+import AuthApiService from './services/auth';
+import TokenService from './services/token-service';
+
 import AppContext from './AppContext';
 import Dashboard from './components/Dashboard';
 import EditPatient from './components/forms/EditPatient';
@@ -25,6 +28,15 @@ function App() {
   const store = {
     user, setUser
   };
+  const callBack = () => {
+   AuthApiService.postRefreshToken();
+  }
+
+  if (TokenService.hasAuthToken()) {
+    TokenService.queueCallbackBeforeExpiry(callBack);
+  }
+
+  
 console.log(store);
   return (
     <AppContext.Provider value={store}>

@@ -44,7 +44,7 @@ const MedicationList = (props) => {
     if (patient.medications.length === 0) {
         noMeds = (
             <div className='center'>
-                <h2>No medications on file...</h2>
+                <h2>No medications on file for {patient.name}</h2>
             </div>
         );
     }
@@ -63,34 +63,28 @@ const MedicationList = (props) => {
     return <>
 
         <ul className={classes.medication_list}>
+        <h2>{patient.name}</h2>
+        <h3>ID: {patient.id}</h3>
             {patient.medications.map((medication) => {
                 return (
-                    <>
-                        
-                            <Medication
-                                refresh={refresh}
-                                patientId={props.match.params.pid}
-                                history={props.history}
-                                key={medication.id}
-                                id={medication.id}
-                                name={medication.name} 
-                                dosage={medication.dosage}
-                                frequency={medication.frequency}
-                                route={medication.route}
-                                date={medication.date}
-                                creatorId={medication.creator}>
-                                
-                            </Medication>
-                        
-                    </>
+                    <Medication
+                        refresh={refresh}
+                        patientId={props.match.params.pid}
+                        history={props.history}
+                        key={medication.id}
+                        {...medication}
+                        creatorId={medication.creator}>
+                    </Medication>
+
+
                 );
             })}
             {noMeds}
 
         </ul>
-        <Button onClick={(e) => {
+        <button className={classes.add_med_btn} onClick={(e) => {
             setShowModal(true);
-        }}>Add Medication</Button>
+        }}>&#43;</button>
         {modal}
     </>
 
