@@ -1,10 +1,6 @@
-import React, { useState } from 'react';
-import TokenService from '../../services/token-service';
+import React from 'react';
 import MedicationApiService from '../../services/medication-service';
-import PatientApiService from '../../services/patient-service';
-import Button from '../UI/buttons/Button';
 import Input from '../UI/Input';
-import Modal from '../UI/Modal';
 import { useForm } from '../../hooks/form-hook';
 
 import classes from './AddMedForm.module.css'

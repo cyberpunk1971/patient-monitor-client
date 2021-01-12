@@ -2,9 +2,7 @@ import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 
 import Button from './UI/buttons/Button';
-import MedicationList from './MedicationList';
 import Modal from './UI/Modal';
-import PatientApiService from '../services/patient-service';
 import classes from './Patient.module.css';
 
 
@@ -15,10 +13,10 @@ const Patient = (props) => {
 
     const [showMeds, setShowMeds] = useState(false);
 
-    const openMedsHandler = () => {
-        setShowMeds(true);
-    };
-
+    // const openMedsHandler = () => {
+    //     setShowMeds(true);
+    // };
+ 
     const closeMedsHandler = () => {
         setShowMeds(false);
     };

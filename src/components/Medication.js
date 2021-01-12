@@ -1,6 +1,5 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import MedicationApiService from '../services/medication-service';
-import Button from './UI/buttons/Button';
 
 import classes from './Medication.module.css';
 

@@ -3,7 +3,6 @@ import { useState, useEffect } from 'react'
 import PatientApiService from '../services/patient-service';
 
 import AddMedForm from '../components/forms/AddMedForm';
-import Button from './UI/buttons/Button';
 import Medication from './Medication';
 import './MedicationList.module.css';
 import classes from './MedicationList.module.css';
@@ -37,7 +36,7 @@ const MedicationList = (props) => {
         // return () => {
         //     //unMount action
         // }
-    }, [])
+    })
 
 
     let noMeds;

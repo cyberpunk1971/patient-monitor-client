@@ -1,4 +1,4 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { Route, Switch } from 'react-router-dom';
 
 import AuthApiService from './services/auth';
@@ -11,7 +11,6 @@ import Register from './components/Register';
 import Home from './components/Home';
 import Login from './components/Login';
 import MainNavigation from './components/UI/Navigation/MainNavigation';
-import Medication from './components/Medication';
 import MedicationList from './components/MedicationList';
 import NewPatientForm from './components/forms/NewPatientForm';
 import ShowPatient from './components/ShowPatient';

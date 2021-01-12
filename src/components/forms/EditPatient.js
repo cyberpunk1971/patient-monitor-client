@@ -3,7 +3,7 @@ import React, { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { VALIDATOR_MINLENGTH, VALIDATOR_REQUIRE } from '../../utils/validators';
 import { useForm } from '../../hooks/form-hook';
-import Button from '../UI/buttons/Button';
+
 import Input from '../UI/Input';
 import classes from './EditPatient.module.css';
 import PatientApiService from '../../services/patient-service';

@@ -1,6 +1,5 @@
-import React, { useReducer, useCallback, useContext } from 'react';
+import React, { useContext } from 'react';
 import axios from 'axios';
-import config from '../config';
 
 import AppContext from '../AppContext';
 import Input from './UI/Input';

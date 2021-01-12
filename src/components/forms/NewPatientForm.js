@@ -77,11 +77,11 @@ const NewPatientForm = (props) => {
             usState: usState.value,
             zip: zip.value,
             phone: phone.value
-        }
-
+        } 
+ 
         try {
             const response = await PatientApiService.addPatient(newPatient);
-            //console.log(response.data);
+            console.log(response.data);
             props.history.push('/dashboard');
 
         } catch (err) {
