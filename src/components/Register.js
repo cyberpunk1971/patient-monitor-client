@@ -51,7 +51,7 @@ const Register = (props) => {
                 }
             }
             const body = JSON.stringify(newUser);
-            const response = await axios.post('http://localhost:8080/api/users/register', body, config);
+            const response = await axios.post(`${config.API_ENDPOINT}/users/register`, body, config);
             localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
             TokenService.saveAuthToken(response.data.token);

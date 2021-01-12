@@ -1,5 +1,6 @@
 import React, { useReducer, useCallback, useContext } from 'react';
 import axios from 'axios';
+import config from '../config';
 
 import AppContext from '../AppContext';
 import Input from './UI/Input';
@@ -43,7 +44,7 @@ const Login = (props) => {
                 }
             }
             const body = JSON.stringify(newUser);
-            const response = await axios.post('http://localhost:8080/api/users/login', body, config);
+            const response = await axios.post(`${config.API_ENDPOINT}/users/login`, body, config);
             localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
             TokenService.saveAuthToken(response.data.token);
