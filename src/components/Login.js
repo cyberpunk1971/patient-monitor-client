@@ -45,7 +45,7 @@ const Login = (props) => {
                 }
             }
             const body = JSON.stringify(newUser);
-            const response = await axios.post(`${config.API_ENDPOINT}/users/login`, body, config);
+            const response = await axios.post(`${config.API_ENDPOINT}/users/login`, body, options);
             localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
             TokenService.saveAuthToken(response.data.token);
