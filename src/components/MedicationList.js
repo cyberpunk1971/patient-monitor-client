@@ -36,7 +36,7 @@ const MedicationList = (props) => {
         // return () => {
         //     //unMount action
         // }
-    })
+    }, [])
 
 
     let noMeds;

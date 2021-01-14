@@ -29,7 +29,7 @@ const ShowPatient = (props) => {
         // return () => {
         //     //unMount action
         // }
-    })
+    }, [])
 
     const editPatient = async () => {
         props.history.push(`/patients/${patient.id}/edit`);
