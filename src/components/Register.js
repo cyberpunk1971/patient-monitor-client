@@ -1,10 +1,9 @@
 import React, { useContext } from 'react';
-import axios from 'axios';
 
+import AuthApiService from '../services/auth';
 import config from '../config';
 
 import AppContext from '../AppContext';
-import TokenService from '../services/token-service';
 import { useForm } from '../hooks/form-hook';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
 
@@ -45,25 +44,9 @@ const Register = (props) => {
             email: email.value,
             password: password.value
         }
-
-        try {
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            const body = JSON.stringify(newUser);
-            const response = await axios.post(`${config.API_ENDPOINT}/users/register`, body, options);
-            console.log(config);
-            localStorage.authToken = response.data.token
-            localStorage.username = response.data.username;
-            TokenService.saveAuthToken(response.data.token);
-            context.setUser(response.data.username);
-            props.history.push('/dashboard');
-
-        } catch (err) {
-            console.error(err);
-        }
+        const data = await AuthApiService.register(newUser)
+        context.setUser(data.username);
+        props.history.push('/dashboard');
     }
 
     return <>

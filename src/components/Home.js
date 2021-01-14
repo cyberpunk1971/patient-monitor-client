@@ -1,8 +1,25 @@
-import React from 'react';
+import React, {useContext} from 'react';
+
+import AuthApiService from '../services/auth';
+import AppContext from '../AppContext';
 
 import classes from './Home.module.css';
+import Login from './Login';
 
-const Home = () => {
+const Home = (props) => {
+    const context = useContext(AppContext);
+    const Demo = async () => {
+        
+        const demoValues = {
+            email: 'demo@email.com',
+            password: 'demopassword'
+        }
+       const data = await AuthApiService.login(demoValues)
+        context.setUser(data.username);
+        console.log(data)
+        props.history.push('/dashboard');
+    }
+
     return (
         <>
             <header className={classes.Home}>
@@ -13,21 +30,8 @@ const Home = () => {
                 <section className={classes.Blurb}>
                     <p className={classes.Home_p}>Patient Monitor allows doctors, nurses, and allied health professionals to manage critical patient data with ease.</p>
                     <p className={classes.Home_p}>To demonstrate the function of the application, simply click the DEMO button below. To access the full suite of Patient Monitor capabilities, such as data persistence over time, please register a new account. If you are already registered, please login.</p>
-                    <ol> TODOS:
-                        <li>Need to render ID and name of patient on medication list screen and maybe pt ID in URL, also. </li>
-                        <li>Need to render Username on Dashboard screen. </li>
-                        <li>Write DEMO function.</li>
-                        <li>Fix links depending on which screen user is on.</li>
-                        <li>Fix front end to logout upon session expiry.</li>
-                        <li>Alphabetize patients by name.</li>
-                        <li>Write tests for front and back end.</li>
-                        <li>Style everything.</li>
-                        <li>Clean up console logs.</li>
-                        <li>Deploy.</li>
-                        <li>Send to people for testing.</li>
-                    </ol>
                 </section>
-                <button className={classes.Demo_button}>DEMO</button>
+                <button className={classes.Demo_button} onClick={Demo}>DEMO</button>
             </main>
 
 

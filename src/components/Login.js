@@ -1,6 +1,7 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 
+import AuthApiService from '../services/auth';
 import config from '../config';
 
 import AppContext from '../AppContext';
@@ -37,25 +38,11 @@ const Login = (props) => {
             email: email.value,
             password: password.value
         }
-
-        try {
-            const options = {
-                headers: {
-                    'Content-Type': 'application/json'
-                }
-            }
-            const body = JSON.stringify(newUser);
-            const response = await axios.post(`${config.API_ENDPOINT}/users/login`, body, options);
-            localStorage.authToken = response.data.token
-            localStorage.username = response.data.username;
-            TokenService.saveAuthToken(response.data.token);
-            context.setUser(response.data.username);
-            props.history.push('/dashboard');
-            console.log(response.data);
-
-        } catch (err) {
-            console.error(err);
-        }
+        const data = await AuthApiService.login(newUser)
+        
+        context.setUser(data.username);
+        props.history.push('/dashboard');
+       
     }
 
     return <>

@@ -2,6 +2,51 @@ import config from '../config';
 import TokenService from './token-service';
 
 const AuthApiService = {
+  async login(newUser) {
+    try {
+      const options = {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(newUser)
+      }
+      const response = await fetch(`${config.API_ENDPOINT}/users/login`,  options);
+      const data = await response.json();
+      localStorage.authToken = data.token
+      localStorage.username = data.username;
+      TokenService.saveAuthToken(data.token);
+      return data;
+
+    } catch (err) {
+      console.error(err);
+    }
+
+  },
+
+  async register(newUser) {
+    try {
+      const options = {
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        method: 'POST',
+        body: JSON.stringify(newUser)
+      }
+
+      const response = await fetch(`${config.API_ENDPOINT}/users/register`, options);
+      const data = await response.json();
+      localStorage.authToken = data.token
+      localStorage.username = data.username;
+      TokenService.saveAuthToken(data.token);
+      return data;
+      
+
+    } catch (err) {
+      console.error(err);
+    }
+  },
+
   postUser(user) {
     return fetch(`${config.API_ENDPOINT}/users`, {
       method: 'POST',
