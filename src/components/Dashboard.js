@@ -18,8 +18,8 @@ const Dashboard = (props) => {
     }
     useEffect(() => {
          update();
- 
-    });
+        
+    }, []);
 
    
  
