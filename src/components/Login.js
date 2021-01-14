@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 
+import config from '../config';
+
 import AppContext from '../AppContext';
 import Input from './UI/Input';
 import { VALIDATOR_EMAIL, VALIDATOR_REQUIRE, VALIDATOR_MAXLENGTH, VALIDATOR_MINLENGTH } from '../utils/validators';
@@ -37,7 +39,7 @@ const Login = (props) => {
         }
 
         try {
-            const config = {
+            const options = {
                 headers: {
                     'Content-Type': 'application/json'
                 }

@@ -1,6 +1,8 @@
 import React, { useContext } from 'react';
 import axios from 'axios';
 
+import config from '../config';
+
 import AppContext from '../AppContext';
 import TokenService from '../services/token-service';
 import { useForm } from '../hooks/form-hook';
@@ -45,13 +47,14 @@ const Register = (props) => {
         }
 
         try {
-            const config = {
+            const options = {
                 headers: {
                     'Content-Type': 'application/json'
                 }
             }
             const body = JSON.stringify(newUser);
-            const response = await axios.post(`${config.API_ENDPOINT}/users/register`, body, config);
+            const response = await axios.post(`${config.API_ENDPOINT}/users/register`, body, options);
+            console.log(config);
             localStorage.authToken = response.data.token
             localStorage.username = response.data.username;
             TokenService.saveAuthToken(response.data.token);

@@ -130,7 +130,6 @@ const EditPatient = (props) => {
 
     const editPatientSubmitHandler = async (event) => {
         event.preventDefault();
-        console.log(formState.inputs, 'line 133');
         const {
             name,
             age,

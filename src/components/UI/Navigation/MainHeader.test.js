@@ -2,12 +2,12 @@ import React from 'react';
 import { configure, shallow }from 'enzyme';
 import Adapter from 'enzyme-adapter-react-16';
 
-import App from './App';
+import MainHeader from './MainHeader';
 
 configure({adapter: new Adapter()});
 
-describe('<App />', () => {
+describe('<MainHeader />', () => {
     it('renders without crashing.', () => {
-        shallow(<App />);
+        shallow(<MainHeader />);
     });
 });
