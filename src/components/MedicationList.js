@@ -20,13 +20,11 @@ const MedicationList = (props) => {
         PatientApiService.getPatient(props.match.params.pid)
             .then(data => {
                 setPatient(data);
-                console.log(data);
             });
     }
 
     useEffect(() => {
         //mount action
-        console.log(props)
         if (!props.match) {
             return;
         }
@@ -55,10 +53,6 @@ const MedicationList = (props) => {
             onCancel={setShowModal}
         />
     }
-    console.log(props.medications);
-    console.log(showModal);
-    //Should the key be the patient ID or the user ID?
-    //Refer to {Link} in Medication.js
     return <>
 
         <ul className={classes.medication_list}>

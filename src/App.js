@@ -35,8 +35,6 @@ function App() {
     TokenService.queueCallbackBeforeExpiry(callBack);
   }
 
-  
-console.log(store);
   return (
     <AppContext.Provider value={store}>
     <div className={classes.App}>

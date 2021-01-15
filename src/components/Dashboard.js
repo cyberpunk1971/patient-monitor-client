@@ -10,7 +10,6 @@ const Dashboard = (props) => {
         PatientApiService.getPatients()
             .then((items) => {
                 setPatients(items)
-                console.log(patients, items);
             })
             .catch(error => {
                 console.log(error);

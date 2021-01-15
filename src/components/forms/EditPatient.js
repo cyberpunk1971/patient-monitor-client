@@ -173,8 +173,7 @@ const EditPatient = (props) => {
         return <h2>Loading...</h2>
 
     };
-    console.log(formState);
-    console.log(formState.inputs.name.value, "Name: Value");
+    
     return (
 
         <form className="patient-form" onSubmit={editPatientSubmitHandler}>

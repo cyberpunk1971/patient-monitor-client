@@ -32,7 +32,6 @@ const Login = (props) => {
     const onSubmit = async e => {
         e.preventDefault();
         const { email, password } = formState.inputs
-        // console.log(formState);
         const newUser = {
 
             email: email.value,

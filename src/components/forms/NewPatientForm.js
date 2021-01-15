@@ -62,7 +62,6 @@ const NewPatientForm = (props) => {
     const submitHandler = async (e) => {
         e.preventDefault();
         const { name, age, dob, gender, race, address, street, city, unit, usState, zip, phone } = formState.inputs
-        console.log(formState);
         const newPatient = {
 
             name: name.value,
@@ -80,8 +79,8 @@ const NewPatientForm = (props) => {
         } 
  
         try {
+            //What is this doing and do i need it?
             const response = await PatientApiService.addPatient(newPatient);
-            console.log(response.data);
             props.history.push('/dashboard');
 
         } catch (err) {
@@ -89,10 +88,6 @@ const NewPatientForm = (props) => {
         }
     }
 
-    //TODO: Edit Patient model to "name" property only
-    //TODO: Add address and contact info here
-    //TODO: Add date of birth property to pt model, newPatient, and editPatient forms
-    console.log(formState);
     return <form className={classes.patient_form} onSubmit={submitHandler}>
         <Input
             id="name"

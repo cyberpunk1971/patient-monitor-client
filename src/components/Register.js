@@ -38,7 +38,6 @@ const Register = (props) => {
     const onSubmit = async e => {
         e.preventDefault();
         const { username, email, password } = formState.inputs
-        // console.log(formState);
         const newUser = {
             username: username.value,
             email: email.value,
@@ -50,14 +49,6 @@ const Register = (props) => {
     }
 
     return <>
-        {/* <div className="patient-form">
-            <h2>Patient Monitor</h2>
-            <h3>is an application for efficient management of
-                patient data.</h3>
-           
-            <button>DEMO</button>
-        </div> */}
-
         <header>
             <h1>Register</h1>
         </header>

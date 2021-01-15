@@ -36,7 +36,6 @@ const AddMedication = (props) => {
     const submitHandler = async e => {
         e.preventDefault();
         const { name, dosage, frequency, route, date } = formState.inputs
-        console.log(formState);
         const newMed = {
             name: name.value,
             dosage: dosage.value,
@@ -47,8 +46,6 @@ const AddMedication = (props) => {
 
         try {
             const response = await MedicationApiService.addMedication(newMed, props.patientId);
-            //props.medication.push(response);
-            console.log(response);
             props.onCancel(false);
             props.refresh();
 

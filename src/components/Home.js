@@ -16,7 +16,6 @@ const Home = (props) => {
         }
        const data = await AuthApiService.login(demoValues)
         context.setUser(data.username);
-        console.log(data)
         props.history.push('/dashboard');
     }
 

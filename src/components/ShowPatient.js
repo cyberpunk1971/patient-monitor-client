@@ -19,11 +19,9 @@ const ShowPatient = (props) => {
 
     useEffect(() => {
         //mount action
-        console.log(props)
         PatientApiService.getPatient(props.match.params.pid)
             .then(data => {
                 setPatient(data);
-                console.log(data);
             });
         //end mount action
         // return () => {

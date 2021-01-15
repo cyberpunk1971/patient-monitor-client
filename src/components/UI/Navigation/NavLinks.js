@@ -15,7 +15,6 @@ const NavLinks = props => {
         localStorage.clear();
         props.history.push('/');
     };
-    console.log(context);
 
     return (
         <ul className={classes.nav_links}>
