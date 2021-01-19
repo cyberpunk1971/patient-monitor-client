@@ -4,7 +4,6 @@ import AuthApiService from '../services/auth';
 import AppContext from '../AppContext';
 
 import classes from './Home.module.css';
-import Login from './Login';
 
 const Home = (props) => {
     const context = useContext(AppContext);
