@@ -13,6 +13,7 @@ import Login from './components/Login';
 import MainNavigation from './components/UI/Navigation/MainNavigation';
 import MedicationList from './components/MedicationList';
 import NewPatientForm from './components/forms/NewPatientForm';
+import PhysicianList from './components/PhysicianList';
 import ShowPatient from './components/ShowPatient';
 
 import classes from './App.module.css'
@@ -27,13 +28,13 @@ function App() {
   const store = {
     user, setUser
   };
-  const callBack = () => {
-   AuthApiService.postRefreshToken();
-  }
+  // const callBack = () => {
+  //  AuthApiService.postRefreshToken();
+  // }
 
-  if (TokenService.hasAuthToken()) {
-    TokenService.queueCallbackBeforeExpiry(callBack);
-  }
+  // if (TokenService.hasAuthToken()) {
+  //   TokenService.queueCallbackBeforeExpiry(callBack);
+  // }
 
   return (
     <AppContext.Provider value={store}>
@@ -49,6 +50,7 @@ function App() {
           <Route exact path='/patients/:pid/' component={ShowPatient} />
           <Route exact path='/patients/:pid/edit' component={EditPatient} />
           <Route exact path='/medications/:pid' component={MedicationList} />
+          <Route exact path='/physicians/:pid' component={PhysicianList} />
         </Switch>
       </main>
     </div>

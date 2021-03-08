@@ -10,7 +10,7 @@ import classes from './Patient.module.css';
 //Refer to PatientList.js
 const Patient = (props) => {
 
-
+    const [showPhysicians, setShowPhysicians] = useState(false);
     const [showMeds, setShowMeds] = useState(false);
 
     // const openMedsHandler = () => {
@@ -32,7 +32,7 @@ const Patient = (props) => {
             </Modal>
 
             <li className={classes.patient_card}>
-                <Link to={`/patients/${props.id}`}>
+                
                     <div className={classes.patient_demos}>
                         <h3>ID: {props.id}</h3>
                         <h3>NAME: {props.name}</h3>
@@ -50,8 +50,9 @@ const Patient = (props) => {
                         <h3>ZIP: {props.zip}</h3>
                         <h3>PHONE: {props.phone}</h3>
                     </div>
-                </Link>
-
+               
+                    <Link to={`/patients/${props.id}`} className={classes.Open_pt_btn}>Open</Link>
+                    
             </li>
 
         </>

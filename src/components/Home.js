@@ -7,6 +7,7 @@ import classes from './Home.module.css';
 
 const Home = (props) => {
     const context = useContext(AppContext);
+    
     const Demo = async () => {
         
         const demoValues = {
@@ -27,9 +28,9 @@ const Home = (props) => {
             <main className={classes.Container}>
                 <section className={classes.Blurb}>
                     <p className={classes.Home_p}>Patient Monitor allows doctors, nurses, and allied health professionals to manage critical patient data with ease.</p>
-                    <p className={classes.Home_p}>To demonstrate the function of the application, simply click the DEMO button below. To access the full suite of Patient Monitor capabilities, such as data persistence over time, please register a new account. If you are already registered, please login.</p>
+                    
                 </section>
-                <button className={classes.Demo_button} onClick={Demo}>DEMO</button>
+                
             </main>
 
 

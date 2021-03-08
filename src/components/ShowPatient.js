@@ -64,6 +64,7 @@ const ShowPatient = (props) => {
             </div>
             <div className={classes.btn_div}>
             <Link to={'/medications/' + patient.id}>Medications</Link>
+            <Link to={'/physicians/' + patient.id}>Physicians</Link>
             <button style={styles} onClick={deletePatient}>Delete</button>
             <button style={styles} onClick={editPatient}>Edit</button>
             

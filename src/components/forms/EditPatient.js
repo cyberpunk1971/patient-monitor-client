@@ -317,7 +317,7 @@ const EditPatient = (props) => {
                 label="Phone"
                 validators={[VALIDATOR_REQUIRE()]}
                 errorText="Please enter all fields"
-                onInput={() => { }}
+                onInput={inputChangeHandler}
                 initialValue={formState.inputs.phone.value}
                 initialValid={formState.inputs.phone.isValid}
             />

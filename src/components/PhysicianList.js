@@ -1,18 +1,17 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react'
+import PhysicianApiService from '../services/patient-service';
 import PatientApiService from '../services/patient-service';
 
-import AddMedForm from '../components/forms/AddMedForm';
-import Medication from './Medication';
-import './MedicationList.module.css';
-import classes from './MedicationList.module.css';
+import AddPhysicianForm from '../components/forms/AddPhysicianForm';
+import Physician from './Physician';
 
-const MedicationList = (props) => {
+const PhysicianList = (props) => {
 
     const [showModal, setShowModal] = useState(false);
     const [patient, setPatient] = useState({
-        medications: []
+        physicians: []
     });
 
     const refresh = () => {
@@ -35,43 +34,43 @@ const MedicationList = (props) => {
         // }
     }, [])
 
-    let noMeds;
-    if (patient.medications.length === 0) {
-        noMeds = (
+    let noPhysicians;
+    if (patient.physicians.length === 0) {
+        noPhysicians = (
             <div className='center'>
-                <h2>No medications on file for {patient.name}</h2>
+                <h2>No physicians on file for {patient.name}</h2>
             </div>
         );
     }
     let modal;
     if (showModal) {
-        modal = <AddMedForm
+        modal = <AddPhysicianForm
             refresh={refresh}
             patientId={props.match.params.pid}
             onCancel={setShowModal}
         />
     }
     return <>
-        <ul className={classes.medication_list}>
+        <ul>
             <Link to={`/patients/${patient.id}`}>Back</Link>
             <h2>{patient.name}</h2>
             <h3>ID: {patient.id}</h3>
-            {patient.medications.map((medication) => {
+            {patient.physicians.map((physician) => {
                 return (
-                    <Medication
+                    <Physician
                         refresh={refresh}
                         patientId={props.match.params.pid}
                         history={props.history}
-                        key={medication.id}
-                        {...medication}
-                        creatorId={medication.creator}>
-                    </Medication>
+                        key={physician.id}
+                        {...physician}
+                        creatorId={physician.creator}>
+                    </Physician>
                 );
             })}
-            {noMeds}
+            {noPhysicians}
 
         </ul>
-        <button className={classes.add_med_btn} onClick={(e) => {
+        <button onClick={(e) => {
             setShowModal(true);
         }}>&#43;</button>
         {modal}
@@ -79,8 +78,8 @@ const MedicationList = (props) => {
 };
 
 //Smoke test so component will always load despite props or no props
-MedicationList.defaultProps = {
-    medications: []
+PhysicianList.defaultProps = {
+    physicians: []
 };
 
-export default MedicationList;
+export default PhysicianList;

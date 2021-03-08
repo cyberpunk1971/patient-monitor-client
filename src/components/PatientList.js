@@ -15,12 +15,16 @@ const PatientList = (props) => {
     return <ul className="patient-list">
         {props.patients.map((patient) => {
             return (
+                <>
                 <Patient
                     history={props.history}
                     key={patient.id}
                     {...patient}
                     creatorId={patient.creator}
+                    
                 />
+                
+                </>
             );
         })}
     </ul>

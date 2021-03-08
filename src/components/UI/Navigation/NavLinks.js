@@ -24,7 +24,7 @@ const NavLinks = props => {
             {context.user ? (
                 <>
                     <li>
-                        <NavLink to='/dashboard'>My Patients</NavLink>
+                        <NavLink to='/dashboard'>My Dashboard</NavLink>
                     </li>
                     <li>
                         <NavLink to='/patients/new'>Add Patient</NavLink>

@@ -2,7 +2,7 @@
     display: flex;
     border-radius: 6px;
     color: black;
-    justify-content: space-between;
+    justify-content: space-around;
     align-items: center;
     margin: 10px 0;
     padding-top: 10px;
@@ -33,8 +33,20 @@ h3 {
     width: 100%;
 }
 
+.Open_pt_btn {
+    color: green;
+}
+
 @media (min-width: 768px) {
     .patient_card {
         width: 100%;
+    }
+}
+
+@media (max-width: 600px) {
+    .patient_card {
+        flex-direction: column;
+        padding-bottom: 10px;
+        align-items: flex-start;
     }
 }
